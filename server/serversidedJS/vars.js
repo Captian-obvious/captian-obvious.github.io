@@ -242,4 +242,4 @@ function LoadTimeData(){}
   // auto-generated load_time_data.m.js, since within a JS module the scope is
   // local.
   window.loadTimeData = loadTimeData;
-})();
+})(); 
