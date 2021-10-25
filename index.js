@@ -24,7 +24,7 @@ function addRow(name, url, isdir,
     link.addEventListener("dragstart", onDragStart, false);
   }
   link.innerText = name;
-  link.href = "/media/fuse/drivefs-7a21f6d504f6262c9c073f403a8b5eec/root/WebServer/root/sites/"+url+"/default.html";
+  link.href = "/"+url+"/";
   file_cell.dataset.value = name;
   file_cell.appendChild(link);
 
