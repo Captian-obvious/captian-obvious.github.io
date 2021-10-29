@@ -1,0 +1,53 @@
+@font-face {
+  font-family: 'DSEG14-Modern-MINI';
+  src: url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Bold.woff2') format('woff2'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Bold.woff') format('woff'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DSEG14-Modern-MINI';
+  src: url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-BoldItalic.woff2') format('woff2'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-BoldItalic.woff') format('woff'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-BoldItalic.ttf') format('truetype');
+  font-weight: bold;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DSEG14-Modern-MINI';
+  src: url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Italic.woff2') format('woff2'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Italic.woff') format('woff'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Italic.ttf') format('truetype');
+  font-weight: normal;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DSEG14-Modern-MINI';
+  src: url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Light.woff2') format('woff2'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Light.woff') format('woff'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Light.ttf') format('truetype');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'DSEG14-Modern-MINI';
+  src: url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-LightItalic.woff2') format('woff2'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-LightItalic.woff') format('woff'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-LightItalic.ttf') format('truetype');
+  font-weight: 200;
+  font-style: italic;
+}
+
+@font-face {
+  font-family: 'DSEG14-Modern-MINI';
+  src: url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Regular.woff2') format('woff2'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Regular.woff') format('woff'),
+  url('../fonts/DSEG14-Modern-MINI/DSEG14ModernMini-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
