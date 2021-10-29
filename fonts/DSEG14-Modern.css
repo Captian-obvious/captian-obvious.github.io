@@ -1,53 +1,53 @@
 @font-face {
   font-family: 'DSEG14-Modern';
-  src: url('../fonts/DSEG14-Modern/DSEG14Modern-Bold.woff2') format('woff2'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-Bold.woff') format('woff'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-Bold.ttf') format('truetype');
+  src: url('DSEG14-Modern/DSEG14Modern-Bold.woff2') format('woff2'),
+  url('DSEG14-Modern/DSEG14Modern-Bold.woff') format('woff'),
+  url('DSEG14-Modern/DSEG14Modern-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'DSEG14-Modern';
-  src: url('../fonts/DSEG14-Modern/DSEG14Modern-BoldItalic.woff2') format('woff2'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-BoldItalic.woff') format('woff'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-BoldItalic.ttf') format('truetype');
+  src: url('DSEG14-Modern/DSEG14Modern-BoldItalic.woff2') format('woff2'),
+  url('DSEG14-Modern/DSEG14Modern-BoldItalic.woff') format('woff'),
+  url('DSEG14-Modern/DSEG14Modern-BoldItalic.ttf') format('truetype');
   font-weight: bold;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'DSEG14-Modern';
-  src: url('../fonts/DSEG14-Modern/DSEG14Modern-Italic.woff2') format('woff2'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-Italic.woff') format('woff'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-Italic.ttf') format('truetype');
+  src: url('DSEG14-Modern/DSEG14Modern-Italic.woff2') format('woff2'),
+  url('DSEG14-Modern/DSEG14Modern-Italic.woff') format('woff'),
+  url('DSEG14-Modern/DSEG14Modern-Italic.ttf') format('truetype');
   font-weight: normal;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'DSEG14-Modern';
-  src: url('../fonts/DSEG14-Modern/DSEG14Modern-Light.woff2') format('woff2'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-Light.woff') format('woff'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-Light.ttf') format('truetype');
+  src: url('DSEG14-Modern/DSEG14Modern-Light.woff2') format('woff2'),
+  url('DSEG14-Modern/DSEG14Modern-Light.woff') format('woff'),
+  url('DSEG14-Modern/DSEG14Modern-Light.ttf') format('truetype');
   font-weight: 200;
   font-style: normal;
 }
 
 @font-face {
   font-family: 'DSEG14-Modern';
-  src: url('../fonts/DSEG14-Modern/DSEG14Modern-LightItalic.woff2') format('woff2'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-LightItalic.woff') format('woff'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-LightItalic.ttf') format('truetype');
+  src: url('DSEG14-Modern/DSEG14Modern-LightItalic.woff2') format('woff2'),
+  url('DSEG14-Modern/DSEG14Modern-LightItalic.woff') format('woff'),
+  url('DSEG14-Modern/DSEG14Modern-LightItalic.ttf') format('truetype');
   font-weight: 200;
   font-style: italic;
 }
 
 @font-face {
   font-family: 'DSEG14-Modern';
-  src: url('../fonts/DSEG14-Modern/DSEG14Modern-Regular.woff2') format('woff2'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-Regular.woff') format('woff'),
-  url('../fonts/DSEG14-Modern/DSEG14Modern-Regular.ttf') format('truetype');
+  src: url('DSEG14-Modern/DSEG14Modern-Regular.woff2') format('woff2'),
+  url('DSEG14-Modern/DSEG14Modern-Regular.woff') format('woff'),
+  url('DSEG14-Modern/DSEG14Modern-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
 }
