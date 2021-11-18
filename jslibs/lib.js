@@ -1,11 +1,12 @@
 var jsmediatags = import('https://cdnjs.cloudflare.com/ajax/libs/jsmediatags/3.9.5/jsmediatags.js')
 var ace = import('https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.13/ace.js')
 
-var lib = {}
-lib.Name = "lib"
+var lib = {
+    "Name":"lib"
+}
 
-lib.prototype.jsmediatags = jsmediatags
+lib.jsmediatags = jsmediatags
 
-lib.prototype.ace = ace
+lib.ace = ace
 
 window.lib = lib
