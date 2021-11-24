@@ -1,7 +1,8 @@
 /*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css 
 */html{
     font-family:sans-serif;
-    -ms-text-size-adjust:100-webkit-text-size-adjust:100%
+    -ms-text-size-adjust:100;
+    -webkit-text-size-adjust:100%;
 }
 body{
     margin:0
