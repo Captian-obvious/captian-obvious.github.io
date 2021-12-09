@@ -5,4 +5,4 @@ var globals = {
     },
 };
 
-window.globals = globals
+window.g = globals;
