@@ -1,1 +1,5 @@
 ErrorDocument 404 ./not-found.html
+ErrorDocument 400 ./400
+ErrorDocument 500 ./500
+ErrorDocument 502 ./502
+ErrorDocument 503 ./503
