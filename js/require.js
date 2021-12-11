@@ -9,6 +9,6 @@ window.require = function(src, ret){
     var g = fileName.split('.')
     var global = g[0]
     if (ret===true) {
-        return global
+        return window[global]
     };
 };
