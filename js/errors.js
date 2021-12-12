@@ -11,6 +11,7 @@ window.addEventListener('load', function() {
     var is500 = detectQuery('code=500');
     var main = document.getElementById('page-container');
     if (is404 === true) {
+        document.title = '404';
         main.innerHTML=`
         <h1 style="color: #980000">Not Found (404)</h1>
         <h4 style="color: #980000">The page you were looking for has been moved or deleted.</h4>
@@ -19,6 +20,7 @@ window.addEventListener('load', function() {
         `
     };
     if (is500 === true) {
+        document.title = 'Internal Server Error (500)';
         main.innerHTML=`
         <h1 style="color: #980000">Server Error (500)</h1>
         <h4 style="color: #980000">The server encountered an error, please try again later.</h4>
