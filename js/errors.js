@@ -2,7 +2,7 @@ function detectQuery(name) {
     var currentQuery = window.location.search;
     if (currentQuery === "?"+name) {
         return true;
-    }else{
+    } else {
         return false;
     };
 };
