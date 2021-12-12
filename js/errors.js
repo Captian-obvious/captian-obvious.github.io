@@ -8,8 +8,9 @@ function detectQuery(name) {
 };
 window.addEventListener('load', function() {
     var is404 = detectQuery('code=404');
+    var main = document.getElementById('page-container');
     if (is404 === true) {
-        document.getElementById('page-container').innerHTML=`
+        main.innerHTML=`
         <h1 style="color: #980000">Not Found (404)</h1>
         <h4 style="color: #980000">The page you were looking for has been moved or deleted.</h4>
         <img src="/images/404.png" width="120px" height="120px" />
