@@ -15,8 +15,8 @@ window.addEventListener('load', function() {
     if (is400 === true) {
         document.title = 'Bad Request (400)';
         main.innerHTML=`
-        <h1 style="color: #980000">Not Found (404)</h1>
-        <h4 style="color: #980000">The page you were looking for has been moved or deleted.</h4>
+        <h1 style="color: #980000">Bad Request (400)</h1>
+        <h4 style="color: #980000">Your browser sent a request that this server could not understand.<br>Sorry about that. Please check your request for errors and try again.</h4>
         <img src="/images/404.png" width="120px" height="120px" />
         <p style="color: #980000">click <a style="color: #ff0000" href="/"><em>here</em></a> to return home.</p>
         `
