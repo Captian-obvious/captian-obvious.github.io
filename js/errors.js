@@ -1,6 +1,7 @@
 function detectQuery(name) {
     var currentQuery = window.location.search;
-    if (currentQuery === "?"+name) {
+    var queryTable = currentQuery.split('&')
+    if (queryTable[0] === "?"+name) {
         return true;
     } else {
         return false;
