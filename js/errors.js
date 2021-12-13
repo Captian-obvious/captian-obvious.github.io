@@ -6,6 +6,11 @@ function detectQuery(name) {
         return false;
     };
 };
+
+function runConnectivity() {
+    /*Not Implemented*/
+};
+
 window.addEventListener('load', function() {
     var is400 = detectQuery('code=400');
     var is404 = detectQuery('code=404');
