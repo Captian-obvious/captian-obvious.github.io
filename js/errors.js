@@ -52,8 +52,8 @@ window.addEventListener('load', function() {
     if (is503 === true) {
         document.title = 'Page Unavailable (503)';
         main.innerHTML = `
-        <h1 style="color: #980000">Page Tempararily Unavailable (503)</h1>
-        <h4 style="color: #980000">Try going back home.</h4>
+        <h1 style="color: #980000">Page Temporarily Unavailable (503)</h1>
+        <h4 style="color: #980000">Service Unavailable. Try again later.</h4>
         <img src="/images/404.png" width="120px" height="120px" />
         <p style="color: #980000">click <a style="color: #ff0000" href="/"><em>here</em></a> to return home.</p>
         `
