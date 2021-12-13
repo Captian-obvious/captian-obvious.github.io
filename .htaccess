@@ -1,5 +1,5 @@
-ErrorDocument 404 ./not-found.html
-ErrorDocument 400 ./400
-ErrorDocument 500 ./500
-ErrorDocument 502 ./502
-ErrorDocument 503 ./503
+ErrorDocument 404 ./request-error?code=404
+ErrorDocument 400 ./request-error?code=400
+ErrorDocument 500 ./request-error?code=500
+ErrorDocument 502 ./request-error?code=502
+ErrorDocument 503 ./request-error?code=503
