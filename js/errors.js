@@ -8,11 +8,6 @@ function detectQuery(name) {
     };
 };
 
-function runConnectivity() {
-    /*Not Implemented*/
-    console.log('ERR: cannot test contectivity with this device');
-};
-
 window.addEventListener('load', function() {
     var is400 = detectQuery('code=400');
     var is404 = detectQuery('code=404');
@@ -64,5 +59,18 @@ window.addEventListener('load', function() {
         <img src="/images/500.png" width="120px" height="120px" />
         <p style="color: #980000">click <a style="color: #ff0000" href="/"><em>here</em></a> to return home.</p>
         `
+        $.ajax({
+            statusCode: {
+                503: function() {
+                    console.log('HTTP-ERR: Server offline.')
+                    main.innerHTML = `
+                    <h1 style="color: #980000">Page Temporarily Unavailable (503)</h1>
+                    <h4 style="color: #980000">Service Unavailable. Try again later.</h4>
+                    <img src="/images/500.png" width="120px" height="120px" />
+                    <p style="color: #980000">click <a style="color: #ff0000" href="/"><em>here</em></a> to return home, <br>and wait until this error goes away.</p>
+                    `
+                }
+            }
+        });
     };
 });
