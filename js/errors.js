@@ -9,6 +9,7 @@ function detectQuery(name) {
 
 function runConnectivity() {
     /*Not Implemented*/
+    console.log('ERR: cannot test contectivity with this device');
 };
 
 window.addEventListener('load', function() {
