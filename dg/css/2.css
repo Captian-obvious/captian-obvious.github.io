@@ -165,7 +165,7 @@ a {
 /* Decrease padding at low sizes. */
 @media (max-width: 640px), (max-height: 640px) {
   body {
-    margin: 15px;
+    margin:   15px;
   }
   h1 {
     margin: 10px 0 15px;
@@ -277,7 +277,6 @@ html[subframe] body {
   position: absolute;
   top: 0px;
   width: 44px;
-  z-index: 2;
 }
 
 .offline .runner-canvas {
