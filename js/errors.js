@@ -41,7 +41,7 @@ window.addEventListener('load', function() {
         <h4 style="color: #980000">The server encountered an error, please try again later.</h4>
         <img src="/images/500.png" width="120px" height="120px" />
         <p style="color: #980000">click <a style="color: #ff0000" href="/"><em>here</em></a> to return home.</p>
-        <p style="color: #980000">for error info, click this icon <i class="fa-solid fa-arrow-right-long"></i></p><div id="ICON"></div>
+        <p style="color: #980000">for error info, click this icon <i class="fa-solid fa-arrow-right-long"></i><i id="ICON"></i></p>
         `
     };
     if (is502 === true) {
