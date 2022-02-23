@@ -49,5 +49,5 @@ else
                 createCustomForceField(child, script.Color.Value)
             end
         end)
-    end
+    end)
 end
