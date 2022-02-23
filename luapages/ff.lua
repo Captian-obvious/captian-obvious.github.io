@@ -17,4 +17,5 @@ function createCustomForceField(forcefield : ForceField)
     ffPart.Material = Enum.Material.ForceField
     ffPart.TopSurface = Enum.SurfaceType.Smooth
     ffPart.BottomSurface = Enum.SurfaceType.Smooth
+    local box = Instance.new("SelectionSphere",forcefield)
 end
