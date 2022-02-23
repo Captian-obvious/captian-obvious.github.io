@@ -37,5 +37,9 @@ function createCustomForceField(forcefield : ForceField, color : Color3)
 end
 
 if plr.Character~=nil then
-    
+    plr.Character.ChildAdded:Connect(function(child)
+        if child:IsA("ForceField") then
+            addCustomForceField(child, script.Color.Value)
+        end
+    end)
 end
