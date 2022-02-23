@@ -1,19 +1,19 @@
-local p = script.Owner.Value
+local plr = script.Owner.Value
 
 function weld(Part0,Part1)
     local C0 = CFrame.new(Part0.Position) * Part0.CFrame:inverse()
     local C1 = CFrame.new(Part1.Position) * Part0.CFrame:inverse()
-    local weld = Instance.new('ManualWeld',Part0)
+    local weld = Instance.new('ManualWeld', Part0)
     weld.Part0 = Part0
     weld.Part1 = Part1
     weld.C0 = C0
     weld.C1 = C1
 end
+
 function createCustomForceField(forcefield : ForceField, color : Color3)
     forcefield.Visible = false
-    local torso = forcefield.Parent:FindFirstChild("HumanoidRootPart")
-    local ffgroup = Instance.new('Folder',forcefield)
-    local ffPart = Instance.new("Part", ffGroup)
+    local torso = forcefield.Parent:FindFirstChild("Torso") or forceField.Parent:FindFirstChild("UpperTorso")
+    local ffPart = Instance.new("Part", torso)
     ffPart.Size = Vector3.new(7,7,7)
     ffPart.Position = torso.Position
     ffPart.Shape = Enum.PartType.Ball
@@ -22,15 +22,20 @@ function createCustomForceField(forcefield : ForceField, color : Color3)
     ffPart.BottomSurface = Enum.SurfaceType.Smooth
     ffPart.CanCollide = false
     ffPart.Anchored = true
-    local box = Instance.new("SelectionSphere", ffGroup)
+    ffPart.Name = "basePartForceField"
+    local box = Instance.new("SelectionSphere", forcefield)
     box.SurfaceColor = color
     box.SurfaceTransparency = 0.7
     box.Transparency = 0.5
     box.Color = color
+    box.Adornee = ffPart
     torso.Anchored = true
     weld(torso, ffPart)
     wait()
     torso.Anchored = false
     ffPart.Anchored = false
-    return ffgroup
+end
+
+if plr.Character~=nil then
+    
 end
