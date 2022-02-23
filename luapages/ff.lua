@@ -18,6 +18,8 @@ function createCustomForceField(forcefield : ForceField, color : Color3)
     ffPart.Material = Enum.Material.ForceField
     ffPart.TopSurface = Enum.SurfaceType.Smooth
     ffPart.BottomSurface = Enum.SurfaceType.Smooth
+    ffPart.CanCollide = false
+    ffPart.Anchored = true
     local box = Instance.new("SelectionSphere", forcefield)
     box.SurfaceColor = color
 end
