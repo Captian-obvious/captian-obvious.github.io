@@ -34,6 +34,9 @@ function createCustomForceField(forcefield : ForceField, color : Color3)
     wait()
     torso.Anchored = false
     ffPart.Anchored = false
+    forcefield.Destroying:Connect(function()
+        ffPart:Destroy()
+    end)
 end
 
 if plr.Character~=nil then
