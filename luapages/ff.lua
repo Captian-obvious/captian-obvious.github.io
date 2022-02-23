@@ -13,7 +13,7 @@ function createCustomForceField(forcefield : ForceField, color : Color3)
     forcefield.Visible = false
     local ffPart = Instance.new("Part", forcefield)
     ffPart.Size = Vector3.new(7,7,7)
-    ffPart.Position = forcefield.Parent:FindFirstChild("HumanoidRootPart")
+    ffPart.Position = forcefield.Parent:FindFirstChild("HumanoidRootPart").Position
     ffPart.Shape = Enum.PartType.Ball
     ffPart.Material = Enum.Material.ForceField
     ffPart.TopSurface = Enum.SurfaceType.Smooth
