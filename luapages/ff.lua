@@ -25,4 +25,5 @@ function createCustomForceField(forcefield : ForceField, color : Color3)
     box.SurfaceTransparency = 0.7
     box.Transparency = 0.5
     box.Color = color
+    
 end
