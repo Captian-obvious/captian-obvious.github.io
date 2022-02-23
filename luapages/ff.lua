@@ -16,4 +16,5 @@ function createCustomForceField(forcefield : ForceField)
     ffPart.Shape = Enum.PartType.Ball
     ffPart.Material = Enum.Material.ForceField
     ffPart.TopSurface = Enum.SurfaceType.Smooth
+    ffPart.BottomSurface = Enum.SurfaceType.Smooth
 end
