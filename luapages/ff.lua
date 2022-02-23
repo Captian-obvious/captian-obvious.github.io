@@ -10,6 +10,7 @@ function weld(Part0,Part1)
     weld.C1 = C1
 end
 function createCustomForceField(forcefield : ForceField)
+    forcefield.Visible = false
     local ffPart = Instance.new("Part", forcefield)
     ffPart.Size = Vector3.new(7,7,7)
     ffPart.Shape = Enum.PartType.Ball
