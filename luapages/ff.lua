@@ -11,19 +11,26 @@ function weld(Part0,Part1)
 end
 function createCustomForceField(forcefield : ForceField, color : Color3)
     forcefield.Visible = false
-    local ffPart = Instance.new("Part", forcefield)
+    local torso = forcefield.Parent:FindFirstChild("HumanoidRootPart")
+    local ffgroup = Instance.new('Folder',forcefield)
+    local ffPart = Instance.new("Part", ffGroup)
     ffPart.Size = Vector3.new(7,7,7)
-    ffPart.Position = forcefield.Parent:FindFirstChild("HumanoidRootPart").Position
+    ffPart.Position = torso.Position
     ffPart.Shape = Enum.PartType.Ball
     ffPart.Material = Enum.Material.ForceField
     ffPart.TopSurface = Enum.SurfaceType.Smooth
     ffPart.BottomSurface = Enum.SurfaceType.Smooth
     ffPart.CanCollide = false
     ffPart.Anchored = true
-    local box = Instance.new("SelectionSphere", forcefield)
+    local box = Instance.new("SelectionSphere", ffGroup)
     box.SurfaceColor = color
     box.SurfaceTransparency = 0.7
     box.Transparency = 0.5
     box.Color = color
+    torso.Anchored = true
+    weld(torso, ffPart)
+    wait()
+    torso.Anchored = false
+    ffPart.Anchored = false
     return ffgroup
 end
