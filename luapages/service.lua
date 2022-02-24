@@ -6,21 +6,17 @@ function DestroyItem(instance)
     local function recursive(obj)
         spawn(function()
             if obj~=workspace and not obj:IsA("Player") and not obj:IsA("Backpack") and not obj:FindFirstChildWhichIsA("BasePart") then
+                local parts = {}
                 for _,thing in pairs(obj:GetChildren()) do
                     spawn(function()
-                        local folder = obj:FindFirstChildWhichIsA("Folder")
-                        local model = obj:FindFirstChildWhichIsA("Model")
-                        if folder then
-                            recursive(folder)
-                        elseif model then
-                            recursive(model)
-                        else
-                            local objParent = obj.Parent
-                            obj:Destroy()
-                            recursive(objParent)
+                        if thing:IsA("BasePart") then
+                            parts[#parts+1] = thing
+                        elseif thing:IsA("Model") or thing:IsA("Folder" then
+                            recursive(thing)
                         end
-                    end
+                    end)
                 end
+                
             end
         end)
     end
