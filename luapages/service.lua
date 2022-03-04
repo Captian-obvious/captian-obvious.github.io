@@ -39,7 +39,7 @@ function service:addItem(instance, t)
             local current = ti-tick()
             if current >= t then
                 table.remove(queue, instance)
-                DestroyItem(instanceProps.object)
+                DestroyItem(instance)
             end
             wait()
         end
