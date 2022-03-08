@@ -4,27 +4,13 @@
         <rect x="389" y="529" width="2" height="2" fill="#000000" stroke="none" pointer-events="none"/>
         <rect x="429" y="499" width="2" height="2" fill="#000000" stroke="none" pointer-events="none"/>
         <rect x="429" y="559" width="2" height="2" fill="#000000" stroke="none" pointer-events="none"/>
-        <ellipse cx="420.68" cy="530" rx="24.813632765" ry="24.813632765"
-                 fill="#ffffff" stroke="#000000" stroke-width="2"
-                 pointer-events="none"/>
-        <path d="M 391 530 L 414 530" fill="#000000" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 415 535 L 430 545" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-              stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 415 525 L 430 515" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-              stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 430 501 L 430 514" fill="#000000" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 430 546 L 430 559" fill="#000000" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 415 513 L 415 547" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linejoin="round" stroke-linecap="round"
-              stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="420.68" cy="530" rx="24.813632765" ry="24.813632765" fill="none" stroke="#000000" stroke-width="2" pointer-events="none"/>
+        <path d="M 391 530 L 414 530" fill="#000000" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 415 535 L 430 545" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 415 525 L 430 515" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 430 501 L 430 514" fill="#000000" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 430 546 L 430 559" fill="#000000" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 415 513 L 415 547" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
         <path d="M 421.96 543.11 L 429.46 544.46 L 425.27 538.1 Z"
               fill="#000000" stroke="#000000" stroke-linejoin="round"
               stroke-linecap="round" stroke-miterlimit="10"
