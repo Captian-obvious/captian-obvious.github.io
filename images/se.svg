@@ -1,14 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="458"
-     height="408">
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" width="458" height="408">
     <defs/>
     <g transform=" scale(1) translate(-66,-256)">
-        <rect x="389" y="529" width="2" height="2" fill="#000000" stroke="none"
-              pointer-events="none"/>
-        <rect x="429" y="499" width="2" height="2" fill="#000000" stroke="none"
-              pointer-events="none"/>
-        <rect x="429" y="559" width="2" height="2" fill="#000000" stroke="none"
-              pointer-events="none"/>
+        <rect x="389" y="529" width="2" height="2" fill="#000000" stroke="none" pointer-events="none"/>
+        <rect x="429" y="499" width="2" height="2" fill="#000000" stroke="none" pointer-events="none"/>
+        <rect x="429" y="559" width="2" height="2" fill="#000000" stroke="none" pointer-events="none"/>
         <ellipse cx="420.68" cy="530" rx="24.813632765" ry="24.813632765"
                  fill="#ffffff" stroke="#000000" stroke-width="2"
                  pointer-events="none"/>
@@ -171,13 +166,9 @@
                 D1
             </text>
         </g>
-        <path d="M 360 558 L 360 530 L 390 530" fill="none" stroke="#000000"
-              stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
-        <ellipse cx="360" cy="560" rx="2" ry="2" fill="#000000" stroke="#000000"
-                 stroke-width="2" pointer-events="none"/>
-        <path d="M 480 440 L 490 440 L 490 560 L 362 560" fill="none"
-              stroke="#000000" stroke-width="2" stroke-miterlimit="10"
-              pointer-events="none"/>
+        <path d="M 360 558 L 360 530 L 390 530" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
+        <ellipse cx="360" cy="560" rx="2" ry="2" fill="#000000" stroke="#000000" stroke-width="2" pointer-events="none"/>
+        <path d="M 480 440 L 490 440 L 490 560 L 362 560" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
         <ellipse cx="360" cy="560" rx="2" ry="2" fill="#000000" stroke="#000000" stroke-width="2" pointer-events="none"/>
         <path d="M 430 560 L 430 620 L 362 620" fill="none" stroke="#000000" stroke-width="2" stroke-miterlimit="10" pointer-events="none"/>
         <ellipse cx="360" cy="620" rx="2" ry="2" fill="#000000" stroke="#000000" stroke-width="2" pointer-events="none"/>
@@ -186,8 +177,7 @@
         <rect x="499" y="299" width="2" height="2" fill="#000000" stroke="none" pointer-events="none"/>
         <path d="M 485 270 L 515 270 L 500 290 Z" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
         <path d="M 500 270 L 500 299" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
-        <rect x="458" y="260" width="22" height="13" fill-opacity="0"
-              fill="#dae2f2" stroke="none" pointer-events="none"/>
+        <rect x="458" y="260" width="22" height="13" fill-opacity="0" fill="#dae2f2" stroke="none" pointer-events="none"/>
         <g fill="#000000" font-family="Arial,Helvetica" font-weight="bold"
            text-anchor="middle" font-size="12px">
             <text x="469" y="271.5">
