@@ -24,36 +24,19 @@
         <rect x="429" y="389" width="2" height="2" fill="#000000" stroke="none" pointer-events="none"/>
         <path d="M 456.5 380 L 456.5 440" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
         <path d="M 451 380 L 451 440" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 468.5 440 L 479 440" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 468.5 380 L 479 380" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 442 430 L 440 430 M 442 420 L 440 420 M 441.86 430 C 444.89 430.01 447.35 427.78 447.36 425.02 C 447.37 422.25 444.92 420.01 441.9 420 C 441.89 420 441.89 420 441.88 420 M 442 420 L 440 420 M 442 410 L 440 410 M 441.86 420 C 444.89 420.01 447.35 417.78 447.36 415.02 C 447.37 412.25 444.92 410.01 441.9 410 C 441.89 410 441.89 410 441.88 410 M 442 410 L 440 410 M 442 400 L 440 400 M 441.86 410 C 444.89 410.01 447.35 407.78 447.36 405.02 C 447.37 402.25 444.92 400.01 441.9 400 C 441.89 400 441.89 400 441.88 400 M 442 400 L 440 400 M 442 390 L 440 390 M 441.86 400 C 444.89 400.01 447.35 397.78 447.36 395.02 C 447.37 392.25 444.92 390.01 441.9 390 C 441.89 390 441.89 390 441.88 390"
-              fill="none" stroke="#000000" stroke-width="2"
-              stroke-linejoin="round" stroke-linecap="round"
-              stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 431 430 L 441.5 430" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 431 390 L 441.5 390" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 465.5 400 L 467.5 400 M 465.5 400 L 467.5 400 M 465.5 390 L 467.5 390 M 465.63 400 C 462.61 400.01 460.15 397.78 460.14 395.01 C 460.13 392.25 462.58 390.01 465.6 390 C 465.61 390 465.61 390 465.62 390 M 465.5 430 L 467.5 430 M 465.5 420 L 467.5 420 M 465.63 430 C 462.61 430.01 460.15 427.78 460.14 425.02 C 460.13 422.25 462.58 420.01 465.6 420 C 465.61 420 465.61 420 465.62 420 M 465.5 420 L 467.5 420 M 465.5 440 L 467.5 440 M 465.5 430 L 467.5 430 M 465.63 440 C 462.61 440.01 460.15 437.78 460.14 435.02 C 460.13 432.25 462.58 430.01 465.6 430 C 465.61 430 465.61 430 465.62 430 M 465.5 430 L 467.5 430 M 465.5 410 L 467.5 410 M 465.63 420 C 462.61 420.01 460.15 417.78 460.14 415.02 C 460.13 412.25 462.58 410.01 465.6 410 C 465.61 410 465.61 410 465.62 410 M 465.5 410 L 467.5 410 M 465.5 390 L 467.5 390 M 465.63 410 C 462.61 410.01 460.15 407.78 460.14 405.02 C 460.13 402.25 462.58 400.01 465.6 400 C 465.61 400 465.61 400 465.62 400 M 465.5 390 L 467.5 390 M 465.5 380 L 467.5 380 M 465.63 390 C 462.61 390.01 460.15 387.78 460.14 385.01 C 460.13 382.25 462.58 380.01 465.6 380 C 465.61 380 465.61 380 465.62 380"
-              fill="none" stroke="#000000" stroke-width="2"
-              stroke-linejoin="round" stroke-linecap="round"
-              stroke-miterlimit="10" pointer-events="none"/>
-        <rect x="414" y="370" width="16" height="13" fill-opacity="0"
-              fill="#dae2f2" stroke="none" pointer-events="none"/>
-        <g fill="#000000" font-family="Arial,Helvetica" font-weight="bold"
-           text-anchor="middle" font-size="12px">
+        <path d="M 468.5 440 L 479 440" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 468.5 380 L 479 380" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 442 430 L 440 430 M 442 420 L 440 420 M 441.86 430 C 444.89 430.01 447.35 427.78 447.36 425.02 C 447.37 422.25 444.92 420.01 441.9 420 C 441.89 420 441.89 420 441.88 420 M 442 420 L 440 420 M 442 410 L 440 410 M 441.86 420 C 444.89 420.01 447.35 417.78 447.36 415.02 C 447.37 412.25 444.92 410.01 441.9 410 C 441.89 410 441.89 410 441.88 410 M 442 410 L 440 410 M 442 400 L 440 400 M 441.86 410 C 444.89 410.01 447.35 407.78 447.36 405.02 C 447.37 402.25 444.92 400.01 441.9 400 C 441.89 400 441.89 400 441.88 400 M 442 400 L 440 400 M 442 390 L 440 390 M 441.86 400 C 444.89 400.01 447.35 397.78 447.36 395.02 C 447.37 392.25 444.92 390.01 441.9 390 C 441.89 390 441.89 390 441.88 390" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 431 430 L 441.5 430" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 431 390 L 441.5 390" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 465.5 400 L 467.5 400 M 465.5 400 L 467.5 400 M 465.5 390 L 467.5 390 M 465.63 400 C 462.61 400.01 460.15 397.78 460.14 395.01 C 460.13 392.25 462.58 390.01 465.6 390 C 465.61 390 465.61 390 465.62 390 M 465.5 430 L 467.5 430 M 465.5 420 L 467.5 420 M 465.63 430 C 462.61 430.01 460.15 427.78 460.14 425.02 C 460.13 422.25 462.58 420.01 465.6 420 C 465.61 420 465.61 420 465.62 420 M 465.5 420 L 467.5 420 M 465.5 440 L 467.5 440 M 465.5 430 L 467.5 430 M 465.63 440 C 462.61 440.01 460.15 437.78 460.14 435.02 C 460.13 432.25 462.58 430.01 465.6 430 C 465.61 430 465.61 430 465.62 430 M 465.5 430 L 467.5 430 M 465.5 410 L 467.5 410 M 465.63 420 C 462.61 420.01 460.15 417.78 460.14 415.02 C 460.13 412.25 462.58 410.01 465.6 410 C 465.61 410 465.61 410 465.62 410 M 465.5 410 L 467.5 410 M 465.5 390 L 467.5 390 M 465.63 410 C 462.61 410.01 460.15 407.78 460.14 405.02 C 460.13 402.25 462.58 400.01 465.6 400 C 465.61 400 465.61 400 465.62 400 M 465.5 390 L 467.5 390 M 465.5 380 L 467.5 380 M 465.63 390 C 462.61 390.01 460.15 387.78 460.14 385.01 C 460.13 382.25 462.58 380.01 465.6 380 C 465.61 380 465.61 380 465.62 380" fill="none" stroke="#000000" stroke-width="2" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
+        <rect x="414" y="370" width="16" height="13" fill-opacity="0" fill="#dae2f2" stroke="none" pointer-events="none"/>
+        <g fill="#000000" font-family="Arial,Helvetica" font-weight="bold" text-anchor="middle" font-size="12px">
             <text x="422" y="381.5">
                 T1
             </text>
         </g>
-        <rect x="366" y="386" width="54" height="13" fill-opacity="0"
-              fill="#dae2f2" stroke="none" pointer-events="none"/>
+        <rect x="366" y="386" width="54" height="13" fill-opacity="0" fill="#dae2f2" stroke="none" pointer-events="none"/>
         <g fill="#000000" font-family="Arial,Helvetica" font-weight="bold"
            text-anchor="middle" font-size="12px">
             <text x="393" y="397.5">
