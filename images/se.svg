@@ -54,18 +54,10 @@
         <path d="M 112 451 C 122 451 122 451 122 451" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
         <path d="M 117 446 C 117 456 117 456 117 456" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
         <path d="M 112 461.53 C 148 461.53 148 461.53 148 461.53" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 121 469 C 139 469 139 469 139 469" fill="none"
-              stroke="#000000" stroke-width="2" stroke-linecap="round"
-              stroke-miterlimit="10" pointer-events="none"/>
-        <path d="M 130 441 L 130 461" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 130 469 L 130 489" fill="none" stroke="#000000"
-              stroke-width="2" stroke-linecap="square" stroke-miterlimit="10"
-              pointer-events="none"/>
-        <path d="M 112 451 C 122 451 122 451 122 451" fill="none"
-              stroke="#000000" stroke-width="1.5" stroke-linecap="round"
-              stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 121 469 C 139 469 139 469 139 469" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 130 441 L 130 461" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 130 469 L 130 489" fill="none" stroke="#000000" stroke-width="2" stroke-linecap="square" stroke-miterlimit="10" pointer-events="none"/>
+        <path d="M 112 451 C 122 451 122 451 122 451" fill="none" stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-miterlimit="10" pointer-events="none"/>
         <path d="M 117 446 C 117 456 117 456 117 456" fill="none"
               stroke="#000000" stroke-width="1.5" stroke-linecap="round"
               stroke-miterlimit="10" pointer-events="none"/>
