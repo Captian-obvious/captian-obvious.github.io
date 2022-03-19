@@ -1,6 +1,6 @@
 function recursive(obj)
     spawn(function()
-        if obj~=workspace and not obj:IsA("Player") and not obj:IsA("Backpack") and not obj:FindFirstChildWhichIsA("BasePart") then
+        if obj~=workspace and not obj:IsA("Player") and not obj:IsA("Backpack") and not obj:FindFirstChildOfClass("Humanoid") and not obj:FindFirstChildWhichIsA("BasePart") then
             local numParts = 0
             for _,thing in pairs(obj:GetChildren()) do
                 spawn(function()
