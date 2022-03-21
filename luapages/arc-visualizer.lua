@@ -1,6 +1,6 @@
 local Services = {
     RunService = game:GetService("RunService"),
-    
+    Players = game:GetService("Players"),
 }
 local id = nil -- module id--
 local createArc = require(id)
@@ -18,3 +18,6 @@ function createCircle(pos,r,num) --creates a circle of CFrames and Vector3 posit
     return t
 end
 
+Services.RunService.RenderStepped:Connect(function()
+    
+end)
