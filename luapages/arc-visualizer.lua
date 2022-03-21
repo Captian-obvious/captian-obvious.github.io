@@ -1,8 +1,9 @@
 local id = "" -- module id--
 local createArc = require(id)
 local maxPL = 0
-local radius = 5
 
-function createCircle(pos,r)
-    local startPos = pos
+function createCircle(pos,r,num)
+    for i=1,num do
+        
+    end
 end
