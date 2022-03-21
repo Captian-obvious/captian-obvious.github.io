@@ -19,6 +19,16 @@ function createCircle(pos,r,num) --creates a circle of CFrames and Vector3 posit
     return t
 end
 
+function set(b,x)
+    if not params.Circle then
+        params.Circle = createCircle(myPos, params.Radius, params.count)
+    end
+    local arc = createArc(
+end
+
 Services.RunService.RenderStepped:Connect(function()
-    local pl = sound
+    local pl = sound.PlaybackLoudness
+    mpl = math.max(mpl,pl)
+    pl = pl/mpl
+    
 end)
