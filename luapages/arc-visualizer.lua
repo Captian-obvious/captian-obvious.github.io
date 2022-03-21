@@ -1,4 +1,7 @@
-local id = "" -- module id--
+local Services = {
+    RunService = game:GetService("RunService")
+}
+local id = nil -- module id--
 local createArc = require(id)
 local maxPL = 0
 
@@ -13,3 +16,4 @@ function createCircle(pos,r,num) --creates a circle of CFrames and Vector3 posit
     end
     return t
 end
+
