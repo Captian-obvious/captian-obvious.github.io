@@ -4,7 +4,8 @@ local Services = {
 }
 local id = nil -- module id--
 local createArc = require(id)
-local maxPL = 0
+local mpl = 0
+local sound = script:FindFirstChild("Music")
 
 function createCircle(pos,r,num) --creates a circle of CFrames and Vector3 positions
     local angle_step = (math.pi*2)/num
@@ -19,5 +20,5 @@ function createCircle(pos,r,num) --creates a circle of CFrames and Vector3 posit
 end
 
 Services.RunService.RenderStepped:Connect(function()
-    
+    local pl = sound
 end)
