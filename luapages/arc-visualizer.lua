@@ -13,7 +13,7 @@ function createCircle(pos,r,num) --creates a circle of CFrames and Vector3 posit
         local angle = angle_step * i
         local newPos = Vector3.new(pos.X+math.cos(angle)*r,pos.Y,pos.Z+math.sin(angle)*r)
         local newCF = CFrame.new(pos, newPos)
-        t[i] = {CFrame = newCF, Position = newPos}
+        t[i] = {Cframe = newCF, Position = newPos}
     end
     return t
 end
