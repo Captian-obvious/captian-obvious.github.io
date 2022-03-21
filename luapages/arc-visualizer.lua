@@ -2,6 +2,12 @@ local Services = {
     RunService = game:GetService("RunService"),
     Players = game:GetService("Players"),
 }
+local params = {
+    frequencyBinCount = 32,
+    radius = 8,
+    position = Vector3.new(0,0,0),
+    circle = nil,
+};
 local id = nil -- module id--
 local createArc = require(id)
 local mpl = 0
@@ -19,11 +25,11 @@ function createCircle(pos,r,num) --creates a circle of CFrames and Vector3 posit
     return t
 end
 
-function set(b,x)
-    if not params.Circle then
-        params.Circle = createCircle(myPos, params.Radius, params.count)
+function set(x)
+    if not params.circle then
+        params.circle = createCircle(params.position, params.radius, params.frequencyBinCount)
     end
-    local arc = createArc(
+    
 end
 
 Services.RunService.RenderStepped:Connect(function()
