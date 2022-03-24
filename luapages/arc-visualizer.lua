@@ -8,8 +8,7 @@ local params = {
     position = Vector3.new(0,0,0),
     circle = nil,
 };
-local id = nil -- module id--
-local createArc = require(id)
+local createArc = require(9119811552)
 local mpl = 0
 local sound = script:FindFirstChild("Music")
 
