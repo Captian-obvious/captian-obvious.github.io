@@ -28,12 +28,13 @@ function set(x)
     if not params.circle then
         params.circle = createCircle(params.position, params.radius, params.frequencyBinCount)
     end
-    
+    local n = #circle
+    local arc = createArc(position, circle[pl*n].Position)
 end
 
 Services.RunService.RenderStepped:Connect(function()
     local pl = sound.PlaybackLoudness
     mpl = math.max(mpl,pl)
     pl = pl/mpl
-    
+    set(pl)
 end)
