@@ -13,7 +13,11 @@ function testfunction(x)
 end
 
 function work()
-    for i=1,64 do
-        print(""..fft(64,testfunction,i)[i])
+    n=5
+    for i=1,n do
+        local e = fft(64,testfunction,i)
+        for c=1,#e do
+            print(""..e[c])
+        end
     end
 end
