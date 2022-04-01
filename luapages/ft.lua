@@ -7,6 +7,6 @@ function sum(t)
 end
 function fft(size, func, x, endval)
     for n=1, endval do
-        math.sin(2*math.pi* (n/size) * x * size)
+        func[n]*math.sin(2*math.pi* (n/size) * x * size)
     end
 end
