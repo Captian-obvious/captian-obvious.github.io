@@ -12,7 +12,7 @@ function fft(size, func, x)
 end
 
 function testfunction(x)
-    return math.sin(200*math.pi*x)
+    return math.sin(20*math.pi*x)
 end
 
 function work()
