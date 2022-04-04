@@ -4,7 +4,7 @@ function fft(size, func, x)
     local max = 1
     for n=0, size-1 do
         v = v + func(n)
-        local l = (func(n/size)*(math.cos(2*math.pi*(n/size)*x* size)))
+        local l = (v+func(n/size)*(math.cos(2*math.pi*(n/size)*x* size)))
         max = math.max(l,max)
         t[n] = l/max*255
     end
