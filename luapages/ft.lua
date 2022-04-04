@@ -11,9 +11,9 @@ function fft(size, func, x)
     local max = 1
     for n=0, size-1 do
         v = v + func(n)
-        local l = (v+func(n/size)*(math.cos(2*math.pi*(n/size)*x* size)))
+        local l = (v+func(n/size)*(math.cos(2*math.pi*(n/size)*x*size)))
         max = getGreaterNumber(max,l)
-        t[n] = math.floor(l/max*255)
+        t[n] = math.ceil(l/max*255)
     end
     return t
 end
