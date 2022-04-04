@@ -1,12 +1,12 @@
 function fft(size, func, x)
     local t = {}
     local v = 0
-    local max = 0
+    local max = 1
     for n=0, size-1 do
         v = v + func(n)
         local l = 10e12*(v*func(n/size)*(math.cos(2*math.pi*(n/size)*x* size)))
         max = math.max(max,l)
-        t[n] = ((10e12*(v*func(n/size)*(math.cos(2*math.pi*(n/size)*x* size))))/max)*255
+        t[n] = l/max*255
     end
     return t
 end
