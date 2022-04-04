@@ -3,7 +3,7 @@ function fft(size, func, x)
     local v = 0
     for n=1, size do
         v = v + func(n)
-        t[n] = 10e40 * (v*func(n/size)*(math.sin(2*math.pi*(n/size)*x* size))) * 255
+        t[n] = 10e5*(v*func(n/size)*(math.cos(2*math.pi*(n/size)*x* size))) * 255
     end
     return t
 end
