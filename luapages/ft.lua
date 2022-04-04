@@ -1,3 +1,10 @@
+function getGreaterNumber(x,y)
+    if x > y then
+        return x
+    else
+        return y
+    end
+end
 function fft(size, func, x)
     local t = {}
     local v = 0
@@ -5,8 +12,8 @@ function fft(size, func, x)
     for n=0, size-1 do
         v = v + func(n)
         local l = (v+func(n/size)*(math.cos(2*math.pi*(n/size)*x* size)))
-        max = math.max(l,max)
-        t[n] = l/max*255
+        max = getGreaterNumber(max,l)
+        t[n] = math.floor(l/max*255)
     end
     return t
 end
