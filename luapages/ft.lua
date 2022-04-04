@@ -1,3 +1,4 @@
+local pi = math.pi
 function getGreaterNumber(x,y)
     if x > y then
         return x
@@ -11,7 +12,7 @@ function fft(size, func, x)
     local max = 1
     for n=0, size-1 do
         v = v + func(n)
-        local l = (v+func(n/size)*(math.cos(2*math.pi*(n/size)*x*size)))
+        local l = (v+func(n/size)*(math.cos(2*pi*(n/size)*x*size)))
         max = getGreaterNumber(max,l)
         t[n] = math.ceil(l/max*255)
     end
@@ -19,7 +20,7 @@ function fft(size, func, x)
 end
 
 function testfunction(x)
-    return math.sin(20*math.pi*x)
+    return math.sin(20*pi*x)
 end
 
 function work()
