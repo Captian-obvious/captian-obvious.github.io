@@ -42,6 +42,13 @@ window.addEventListener('load', function() {
         <img src="/images/500.png" width="120px" height="120px" />
         <p style="color: #980000">click <a style="color: #ff0000" href="/"><em>here</em></a> to return home.</p>
         <p style="color: #980000">for error info, click this icon <i class="fa-solid fa-arrow-right-long"></i><div id="ICON"></div></p>
+        <div id="hiddeninfo" hidden>
+            <h3 style="color: #980000">Try:</h3><br>
+            <h6 style="color: #980000">1. Checking your connection</h6><br>
+            <h6 style="color: #980000">2. Checking your proxy settings</h6><br>
+            <h6 style="color: #980000">3. Reloading the page</h6><br>
+            <h6 style="color: #980000">4. Checking for errors in your request.</h6><br>
+        </div>
         <script>
         var button = document.getElementById("ICON")
         var info = document.getElementById("hiddeninfo")
@@ -53,13 +60,6 @@ window.addEventListener('load', function() {
             }
         });
         </script>
-        <div id="hiddeninfo" hidden>
-            <h3 style="color: #980000">Try:</h3><br>
-            <h6 style="color: #980000">1. Checking your connection</h6><br>
-            <h6 style="color: #980000">2. Checking your proxy settings</h6><br>
-            <h6 style="color: #980000">3. Reloading the page</h6><br>
-            <h6 style="color: #980000">4. Checking for errors in your request.</h6><br>
-        </div>
         `
     };
     if (is502 === true) {
