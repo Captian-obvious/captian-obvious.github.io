@@ -1,7 +1,6 @@
 function createAudio(url,loopBoolean,volume){
     var src = url
     var audio = document.createElement('AUDIO')
-    audio.class = 'AUDIO1'
     if (src != null) {
         audio.src=src
     }
