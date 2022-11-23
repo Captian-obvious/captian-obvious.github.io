@@ -6,7 +6,7 @@ function createAudio(url,loopBoolean,volume){
         audio.source=src
     }
     if (loopBoolean != null) {
-        audio.loop = loopedBoolean
+        audio.loop = loopBoolean
     }
     if (volume != null) {
         audio.volume = volume / 100
