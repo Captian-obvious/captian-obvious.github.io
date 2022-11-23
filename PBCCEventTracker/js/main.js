@@ -139,8 +139,10 @@ window.addEventListener('load', function(){
     main.innerHTML = `
     <div class='red1' id='hint' hidden></div>
     <div class='red1' id='timer' hidden></div>
-    <button id='test'>meltdown</button>
+    <div id='test'>meltdown</div>
     `
     var button = document.getElementById('test')
-    button.onclick = doMeltdown()
+    button.addEventListener('click', function(){
+        doMeltdown()
+    })
 })
