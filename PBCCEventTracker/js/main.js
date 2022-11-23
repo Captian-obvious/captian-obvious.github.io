@@ -5,6 +5,7 @@ function createAudio(url){
         audio.src=src
     }
     if (audio != null) {
+        audio.hidden = true
         return audio
     }
 }
