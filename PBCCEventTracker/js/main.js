@@ -136,8 +136,9 @@ window.addEventListener('load', function(){
     main.innerHTML = `
     <div class='red1' id='hint' hidden></div>
     <div class='red1' id='timer' hidden></div>
-    <div id='test'>meltdown</div>
+    <button id='test'>meltdown</button>
     `
+    wait(3)
     var button = document.getElementById('test')
     button.addEventListener('click', function(){
         doMeltdown()
