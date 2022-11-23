@@ -13,7 +13,6 @@ function createAudio(url,loopBoolean,volume){
     }
     if (audio != null) {
         document.body.appendChild(audio)
-        audio.hidden = true
         return audio
     }
 }
