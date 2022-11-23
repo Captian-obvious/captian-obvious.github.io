@@ -1,6 +1,7 @@
 function createAudio(url,loopBoolean,volume){
     var src = url
     var audio = document.createElement('AUDIO')
+    audio.volume = 1
     if (src != null) {
         audio.src=src
     }
@@ -9,8 +10,6 @@ function createAudio(url,loopBoolean,volume){
     }
     if (volume != null) {
         audio.volume = volume / 100
-    }else{
-        audio.volume = 1
     }
     if (audio != null) {
         document.body.appendChild(audio)
