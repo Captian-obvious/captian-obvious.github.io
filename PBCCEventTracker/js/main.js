@@ -3,6 +3,7 @@ function createAudio(url,loopBoolean,volume){
     var audio = document.createElement('AUDIO')
     audio.volume = 1
     audio.hidden=true
+    document.body.appendChild(audio)
     if (src != null) {
         audio.source=src
     }
@@ -13,7 +14,6 @@ function createAudio(url,loopBoolean,volume){
         audio.volume = volume / 100
     }
     if (audio != null) {
-        document.body.appendChild(audio)
         return audio
     }
 }
