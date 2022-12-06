@@ -56,7 +56,7 @@ function doMeltdown() {
     wait(4)
     alarm.play()
     wait(10)
-    alarm.stop()
+    alarm.pause()
     wait(5)
     evac.play()
     alarm.play()
