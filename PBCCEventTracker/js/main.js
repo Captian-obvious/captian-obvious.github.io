@@ -13,6 +13,7 @@ function createAudio(url,loopBoolean,volume){
         audio.volume = volume / 100
     }
     if (audio != null) {
+        audio.load()
         return audio
     }
 }
