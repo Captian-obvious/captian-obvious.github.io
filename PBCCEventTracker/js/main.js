@@ -2,6 +2,7 @@ function createAudio(url,loopBoolean,volume){
     var src = url
     var audio = document.createElement('AUDIO')
     audio.volume = 1
+    audio.hidden=true
     if (src != null) {
         audio.source=src
     }
