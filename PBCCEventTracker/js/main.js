@@ -51,6 +51,7 @@ function doMeltdown() {
     var hint = document.getElementById('hint')
     var timer = 0
     var timerDisplay = document.getElementById('timer')
+    wait(1)
     meltdownStarting.play()
     wait(25)
     danger.play()
