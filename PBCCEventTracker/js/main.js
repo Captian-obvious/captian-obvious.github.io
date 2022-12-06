@@ -61,7 +61,7 @@ function doMeltdown() {
     evac.play()
     alarm.play()
     wait(10)
-    alarm.stop()
+    alarm.pause()
     theme.play()
     wait(40)
     lockdown.play()
@@ -76,11 +76,11 @@ function doMeltdown() {
     wait(5)
     alarm.play()
     wait(10)
-    alarm.stop()
+    alarm.pause()
     wait(15)
     evac.play()
     wait(49)
-    theme.stop()
+    theme.pause()
     hint.hidden = false
     hint.TextContent = 'ALERT! REACTOR INSTABILITY AND THERMAL RUNAWAY!'
     wait(2.5)
@@ -122,10 +122,10 @@ function doMeltdown() {
         }
         if (currentTime === 145) {
             ut.play()
-            di.stop()
+            di.pause()
         }
         if (currentTime === 50) {
-            ut.stop()
+            ut.pause()
             setTimeout(finale, 0); 
         }
         timerDisplay.TextContent = ''+currentTime
