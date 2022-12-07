@@ -14,16 +14,16 @@ function createAudio(url,loopBoolean,volume){
     audio.hidden=true
     audio.controls=true
     document.getElementById('audios').appendChild(audio)
-    if (src != null) {
+    if (src) {
         audio.src=src
     }
-    if (loopBoolean != null) {
+    if (loopBoolean) {
         audio.loop = loopBoolean
     }
-    if (volume != null) {
+    if (volume) {
         audio.volume = volume/100
     }
-    if (audio != null) {
+    if (audio) {
         audio.load()
         return loadMedia(audio)
     }
