@@ -7,7 +7,7 @@ function loadMedia(mediaElements) {
     gainNode.gain.value = source.volume
     return source
 }
-function createAudio(url,loopBoolean,volume){
+function createAudio(url,loopBoolean,volume) {
     var src = url
     var audio = document.createElement('AUDIO')
     audio.volume=1
