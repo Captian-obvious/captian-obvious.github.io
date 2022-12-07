@@ -16,9 +16,9 @@ function createAudio(url,loopBoolean,volume) {
     audio.src=src
     audio.loop = loopBoolean
     audio.volume = volume/100
-    document.getElementById('audios').appendChild(audio)
     audio.load()
     return audio
+    document.getElementById('audios').appendChild(audio)
 }
 function wait(time) {
     const date = Date.now();
