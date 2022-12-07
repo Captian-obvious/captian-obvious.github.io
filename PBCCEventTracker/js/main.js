@@ -4,6 +4,7 @@ function loadMedia(mediaElements) {
     var gainNode = ctx.createGain()
     source.connect(gainNode);
     gainNode.connect(ctx.destination);
+    gainNode.gain.value = source.volume
     return source
 }
 function createAudio(url,loopBoolean,volume){
@@ -24,7 +25,7 @@ function createAudio(url,loopBoolean,volume){
     }
     if (audio != null) {
         audio.load()
-        return audio
+        return loadMedia(audio)
     }
 }
 function wait(time) {
