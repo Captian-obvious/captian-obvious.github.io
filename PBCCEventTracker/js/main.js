@@ -13,20 +13,12 @@ function createAudio(url,loopBoolean,volume) {
     audio.volume=1
     audio.hidden=true
     audio.controls=true
+    audio.src=src
+    audio.loop = loopBoolean
+    audio.volume = volume/100
     document.getElementById('audios').appendChild(audio)
-    if (src) {
-        audio.src=src
-    }
-    if (loopBoolean) {
-        audio.loop = loopBoolean
-    }
-    if (volume) {
-        audio.volume = volume/100
-    }
-    if (audio) {
-        audio.load()
-        return loadMedia(audio)
-    }
+    audio.load()
+    return audio
 }
 function wait(time) {
     const date = Date.now();
