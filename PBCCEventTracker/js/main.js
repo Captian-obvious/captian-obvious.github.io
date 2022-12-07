@@ -44,6 +44,8 @@ function finale() {
     ttz.play()
     wait(12)
     exp.play()
+    wait(50)
+    document.getElementById('audios').innerHTML = ''
 }
 function doMeltdown() {
     var meltdownStarting = createAudio('./sounds/meltdownStarting.ogg', false);
