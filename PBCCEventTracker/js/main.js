@@ -1,8 +1,17 @@
+function loadMedia(mediaElements) {
+    var ctx = new AudioContext()
+    var source = ctx.createMediaElementSource(mediaElements)
+    var gainNode = ctx.createGain()
+    source.connect(gainNode);
+    gainNode.connect(ctx.destination);
+    return source
+}
 function createAudio(url,loopBoolean,volume){
     var src = url
     var audio = document.createElement('AUDIO')
     audio.volume=1
     audio.hidden=true
+    audio.controls=true
     document.getElementById('audios').appendChild(audio)
     if (src != null) {
         audio.src=src
