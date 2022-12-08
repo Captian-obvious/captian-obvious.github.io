@@ -9,13 +9,13 @@ function loadMedia(mediaElements) {
 }
 function createAudio(url,loopBoolean,volume) {
     var src = url
+    var vol = volume || 100
     var audio = document.createElement('AUDIO')
-    audio.volume=1
     audio.hidden=true
     audio.controls=true
     audio.src=src
     audio.loop = loopBoolean
-    audio.volume = volume/100
+    audio.volume = vol/100
     audio.load()
     return audio
     document.getElementById('audios').appendChild(audio)
