@@ -9,13 +9,12 @@ function loadMedia(mediaElements) {
 }
 function createAudio(url,loopBoolean,volume) {
     var src = url
-    var vol = volume || 100
     var audio = document.createElement('AUDIO')
     audio.hidden=true
     audio.controls=true
     audio.src=src
     audio.loop = loopBoolean
-    audio.volume = vol/100
+    audio.volume = volume/100
     audio.load()
     setTimeout(function(){
         document.getElementById('audios').appendChild(audio)
@@ -31,9 +30,9 @@ function wait(time) {
     } while (currentDate - date < milliseconds);
 }
 function finale() {
-    var th = createAudio('./sounds/music5.ogg', false);
-    var ttz = createAudio('./sounds/tentozero.ogg', false);
-    var exp = createAudio('./sounds/explosion.ogg', false);
+    var th = createAudio('./sounds/music5.ogg', false, 100);
+    var ttz = createAudio('./sounds/tentozero.ogg', false, 100);
+    var exp = createAudio('./sounds/explosion.ogg', false, 100);
     th.play()
     wait(40)
     ttz.play()
@@ -43,18 +42,18 @@ function finale() {
     document.getElementById('audios').innerHTML = ''
 }
 function doMeltdown() {
-    var meltdownStarting = createAudio('./sounds/meltdownStarting.ogg', false);
-    var theme = createAudio('./sounds/theme.ogg', false);
-    var alarm = createAudio('./sounds/alarm.ogg', true);
-    var lockdown = createAudio('./sounds/lockdown.ogg', false);
-    var cei = createAudio('./sounds/core-explosion-imminent.ogg', false);
-    var epa = createAudio('./sounds/emergencypoweractivated.ogg', false);
+    var meltdownStarting = createAudio('./sounds/meltdownStarting.ogg', false, 100);
+    var theme = createAudio('./sounds/theme.ogg', false, 100);
+    var alarm = createAudio('./sounds/alarm.ogg', true, 100);
+    var lockdown = createAudio('./sounds/lockdown.ogg', false, 100);
+    var cei = createAudio('./sounds/core-explosion-imminent.ogg', false, 100);
+    var epa = createAudio('./sounds/emergencypoweractivated.ogg', false, 100);
     var me = createAudio('./sounds/metalexplosion.ogg', false, 80);
-    var evac = createAudio('./sounds/EVAC.ogg', false);
-    var danger = createAudio('./sounds/danger.ogg', false);
-    var di = createAudio('./sounds/destruction-imminent.ogg', false);
-    var ut = createAudio('./sounds/ultimate_travesty.ogg', false);
-    var sd = createAudio('./sounds/T2Min.ogg', false);
+    var evac = createAudio('./sounds/EVAC.ogg', false, 100);
+    var danger = createAudio('./sounds/danger.ogg', false, 100);
+    var di = createAudio('./sounds/destruction-imminent.ogg', false, 100);
+    var ut = createAudio('./sounds/ultimate_travesty.ogg', false, 100);
+    var sd = createAudio('./sounds/T2Min.ogg', false, 100);
     var hint = document.getElementById('hint')
     var timer = 0
     var timerDisplay = document.getElementById('timer')
