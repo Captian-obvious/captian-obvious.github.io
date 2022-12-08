@@ -17,8 +17,10 @@ function createAudio(url,loopBoolean,volume) {
     audio.loop = loopBoolean
     audio.volume = vol/100
     audio.load()
+    setTimeout(100,function(){
+        document.getElementById('audios').appendChild(audio)
+    })
     return audio
-    document.getElementById('audios').appendChild(audio)
 }
 function wait(time) {
     const date = Date.now();
