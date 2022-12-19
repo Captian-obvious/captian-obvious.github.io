@@ -4,9 +4,12 @@
         <title>File Viewer</title>
         <link rel='stylesheet' href='/css/themes.css'/>
         <script src='/js/require.js'></script>
+        <script src='https://captian-obvious.github.io/lib/fv/dist/src/main.js'></script>
     </head>
     <body>
         <div id='file' height='100%' width='100%'></div>
-        <script src='./js/audio-test.js'></script>
+        <script>
+            fv.Load('audio')
+        </script>
     </body>
 </html>
