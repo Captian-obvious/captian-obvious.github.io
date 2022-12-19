@@ -1,5 +1,5 @@
 var fv = {
-    open: function(file){
+    Open: function(file){
         
     },
 }
