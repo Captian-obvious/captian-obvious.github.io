@@ -1,1 +1,1 @@
-require('../lib/fv/main.js')
+require('/lib/fv/main.js')
