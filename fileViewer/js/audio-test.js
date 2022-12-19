@@ -1,2 +1,2 @@
 require('/lib/fv/main.js')
-fv.Load('audio')
+setTimeout(function(){fv.Load('audio')}, 1000)
