@@ -7,6 +7,9 @@
 .red1 {
     color: #ff0000;
 }
+.middle {
+    vertical-align: middle;
+}
 p {
     color: #ff0000;
 }
