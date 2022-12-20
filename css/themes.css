@@ -9,6 +9,7 @@
 }
 .middle {
     vertical-align: middle;
+    position: fixed;
 }
 p {
     color: #ff0000;
