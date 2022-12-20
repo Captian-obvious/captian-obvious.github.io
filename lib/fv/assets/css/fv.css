@@ -1,6 +1,8 @@
 .MediaPlayerIcon {
     width: 16px;
     height: 16px;
+    background-size:cover;
+    background-position:center;
 }
 .MediaPlayerIcon:hover {
     cursor: pointer;
@@ -10,12 +12,10 @@
 }
 .icon-play:hover {
     background-image: url('../images/play-icon-hover.svg');
-    background-style: fit;
 }
 .icon-pause {
     background-image: url('../images/pause-icon.svg');
 }
 .icon-pause:hover {
     background-image: url('../images/pause-icon-hover.svg');
-    background-style: fit;
 }
