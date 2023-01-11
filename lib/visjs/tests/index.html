@@ -3,9 +3,18 @@
     <head>
         <title>Visualizer Test</title>
         <script src='../dist/src/main.js'></script>
+        <style>
+            visualizer {
+                display: block;
+            }
+        </style>
     </head>
     <body>
         <input type='file' id='file'/>
         <visualizer data-vis-type='fft2' data-fft-size='128' style='width:100px; height:100px;'></visualizer>
+        <script>
+            var vis = window.vm
+            var visualizers = vis.init()
+        </script>
     </body>
 </html>
