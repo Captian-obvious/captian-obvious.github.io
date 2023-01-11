@@ -6,14 +6,15 @@
         <style>
             visualizer {
                 display: block;
-                width:100px; 
-                height:100px;
+            }
+            canvas {
+                position: relative;
             }
         </style>
     </head>
     <body>
         <input type='file' id='file'/>
-        <visualizer data-vis-type='fft2' data-fft-size='128'></visualizer>
+        <visualizer width='100px' height='100px' data-vis-type='fft2' data-fft-size='128'></visualizer>
         <script>
             var vis = window.vm
             var visualizers = vis.init()
