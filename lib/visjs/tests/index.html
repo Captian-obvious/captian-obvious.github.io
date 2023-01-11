@@ -6,18 +6,20 @@
         <style>
             visualizer {
                 display: block;
+                width:100px; 
+                height:100px;
             }
         </style>
     </head>
     <body>
         <input type='file' id='file'/>
-        <visualizer data-vis-type='fft2' data-fft-size='128' style='width:100px; height:100px;'></visualizer>
+        <visualizer data-vis-type='fft2' data-fft-size='128'></visualizer>
         <script>
             var vis = window.vm
             var visualizers = vis.init()
-            var vis = visualizers[0]
+            var vis2 = visualizers[0]
             document.getElementById('file').addEventListener('change',function(){
-                vis.openFile(this.files[0])
+                vis2.openFile(this.files[0])
             })
         </script>
     </body>
