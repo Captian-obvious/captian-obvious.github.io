@@ -15,6 +15,10 @@
         <script>
             var vis = window.vm
             var visualizers = vis.init()
+            var vis = visualizers[0]
+            document.getElementById('file').addEventListener('change',function(){
+                vis.openFile(this.files[0])
+            })
         </script>
     </body>
 </html>
