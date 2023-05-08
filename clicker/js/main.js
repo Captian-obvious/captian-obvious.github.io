@@ -12,6 +12,7 @@ function init() {
     var cdis = document.getElementById('cursorsdisplay')
     var cl = document.getElementById('clickme')
     var buyCursor = document.getElementById('cursor')
+    var buyAutoclicker = document.getElementById('autoclicker')
     var score = 0
     var cursors = 0
     var autoclickers = 0
@@ -38,6 +39,18 @@ function init() {
             sdis.style.color = n
         }
     })
+    buyAutoclicker.addEventListener('click',function(){
+        if (score > 499) {
+            cursors += 1
+            cdis.innerHTML = 'Cursors: '+cursors
+            addScore(-500)
+        }else{
+            var n = sdis.style.color
+            sdis.style.color = '#ff0000'
+            wait(0.2)
+            sdis.style.color = n
+        }
+    })
     cl.addEventListener('click', function(){
         addScore(1)
         if (cursors > 0) {
@@ -45,7 +58,7 @@ function init() {
         }
     })
     while (active===true) {
-        wait(1)
+        wait(0.5)
         if (autoclickers > 0) {
             autoclickerFunction()
         }
