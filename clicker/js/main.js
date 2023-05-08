@@ -1,3 +1,4 @@
+var active = false
 function wait(time) {
     const date = Date.now();
     let milliseconds = time * 1000
@@ -13,6 +14,8 @@ function init() {
     var buyCursor = document.getElementById('cursor')
     var score = 0
     var cursors = 0
+    var autoclickers = 0
+    active = true
     function addScore(val) {
         score += val
         sdis.innerHTML = 'Clicks: '+score
@@ -20,8 +23,8 @@ function init() {
     function cursorFunction() {
         addScore(1 * cursors)
     }
-    function renderFrame() {
-        
+    function autoclickerFunction(){
+        addScore(5 * autoclickers)
     }
     buyCursor.addEventListener('click',function(){
         if (score > 99) {
@@ -41,8 +44,15 @@ function init() {
             cursorFunction()
         }
     })
+    while (active===true) {
+        wait(1)
+        if (autoclickers > 0) {
+            autoclickerFunction()
+        }
+    }
 }
 window.addEventListener('load', function(){
+    active = false
     document.getElementById('canvas').innerHTML=`
     <div class='center' id='scoredisplay'>Clicks: 0</div><br>
     <div style='height: 12px;' class='center' id='cursorsdisplay'>Cursors: 0</div><br>
