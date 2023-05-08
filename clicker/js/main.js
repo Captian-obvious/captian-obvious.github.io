@@ -10,6 +10,7 @@ function wait(time) {
 function init() {
     var sdis = document.getElementById('scoredisplay')
     var cdis = document.getElementById('cursorsdisplay')
+    var acdis = document.getElementById('autoclickersdisplay')
     var cl = document.getElementById('clickme')
     var buyCursor = document.getElementById('cursor')
     var buyAutoclicker = document.getElementById('autoclicker')
@@ -42,7 +43,7 @@ function init() {
     buyAutoclicker.addEventListener('click',function(){
         if (score > 499) {
             cursors += 1
-            cdis.innerHTML = 'Cursors: '+cursors
+            acdis.innerHTML = 'Autoclickers: '+autoclickers
             addScore(-500)
         }else{
             var n = sdis.style.color
@@ -69,6 +70,7 @@ window.addEventListener('load', function(){
     document.getElementById('canvas').innerHTML=`
     <div class='center' id='scoredisplay'>Clicks: 0</div><br>
     <div style='height: 12px;' class='center' id='cursorsdisplay'>Cursors: 0</div><br>
+    <div style='height: 12px;' class='center' id='autoclickersdisplay'>Autoclickers: 0</div><br>
     <button id='clickme'>Click Me!</button><br>
     <button id='cursor'>Buy a cursor: 100 Clicks.</button>
     <button id='autoclicker'>Buy an autoclicker: 500 Clicks.</button>
