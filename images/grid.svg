@@ -1,7 +1,5 @@
-
 <?xml version="1.0" standalone="yes"?>
 <svg xmlns="http://www.w3.org/2000/svg" width="1654" height="2339">
-<path style="fill:#ffffff; stroke:none;" d="M0 0L0 2339L1654 2339L1654 0L0 0z"/>
 <path style="fill:#ffcfcf; stroke:none;" d="M97 98L97 99L1557 99L1557 2239C1561.61 2228.02 1558 2208.94 1558 2197L1558 2100L1558 1763L1558 595L1558 221L1558 130C1558 124.059 1561.23 102.853 1556.4 99.0278C1551.57 95.2046 1536.03 98 1530 98L1458 98L1179 98L97 98z"/>
 <path style="fill:#ff7c7c; stroke:none;" d="M96 99L96 1715L96 2110L96 2207L96 2230L97.6034 2238.97L124 2240L196 2240L475 2240L1557 2240L1557 99L96 99z"/>
 <path style="fill:#ffcfcf; stroke:none;" d="M97 100L97 119L116 119L116 118L98 118L97 100z"/>
