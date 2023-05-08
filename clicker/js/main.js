@@ -58,12 +58,12 @@ function init() {
             cursorFunction()
         }
     })
-    do {
+    while (active===true) {
         wait(0.5)
         if (autoclickers > 0) {
             autoclickerFunction()
         }
-    } while (active===true);
+    };
 }
 window.addEventListener('load', function(){
     active = false
