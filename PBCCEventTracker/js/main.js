@@ -7,6 +7,14 @@ function loadMedia(mediaElements) {
     gainNode.gain.value = source.volume
     return source
 }
+function wait(time) {
+    const date = Date.now();
+    let milliseconds = time * 1000
+    let currentDate = null;
+    do {
+        currentDate = Date.now();
+    } while (currentDate - date < milliseconds);
+}
 function createAudio(url,loopBoolean,volume) {
     var src = url
     var audio = document.createElement('AUDIO')
@@ -16,18 +24,9 @@ function createAudio(url,loopBoolean,volume) {
     audio.loop = loopBoolean
     audio.volume = volume/100
     audio.load()
-    setTimeout(function(){
-        document.getElementById('audios').appendChild(audio)
-    },100)
+    document.getElementById('audios').appendChild(audio)
+    wait(.1)
     return audio
-}
-function wait(time) {
-    const date = Date.now();
-    let milliseconds = time * 1000
-    let currentDate = null;
-    do {
-        currentDate = Date.now();
-    } while (currentDate - date < milliseconds);
 }
 function finale() {
     var th = createAudio('./sounds/music5.ogg', false, 100);
