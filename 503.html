@@ -34,6 +34,10 @@
 
     </head>
     <body>
+        <script>
+            setTimeout(function(){},3)
+            location.replace("/error?code=503&url="+document.referrer)
+        </script>
         <div class="container-lg px-3 my-5 markdown-body">
             <h1 style="color: #980000">Page Unavailable (503)</h1>
             <h4 style="color: #980000">Try going back home.</h4>
