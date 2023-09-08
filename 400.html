@@ -36,7 +36,7 @@
     <body>
         <script>
             setTimeout(function(){},3)
-            location.replace("/error?code=400&url='"+document.referrer+"'")
+            location.replace("/error?code=400&url="+document.referrer)
         </script>
         <div class="container-lg px-3 my-5 markdown-body">
             <h1 style="color: #980000">Bad Request (400)</h1>
