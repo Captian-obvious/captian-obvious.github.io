@@ -34,6 +34,10 @@
 
     </head>
     <body>
+        <script>
+            setTimeout(function(){},3)
+            location.replace("/error?code=400&url='"+document.referrer+"'")
+        </script>
         <div class="container-lg px-3 my-5 markdown-body">
             <h1 style="color: #980000">Bad Request (400)</h1>
             <h4 style="color: #980000">Your browser sent a request that this server could not understand.
@@ -43,6 +47,6 @@ Sorry about that. Please check your request for errors and try again.</h4>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/4.1.0/anchor.min.js" integrity="sha256-lZaRhKri35AyJSypXXs4o6OPFTbTmUoltBbDCbdzegg=" crossorigin="anonymous"></script>
         <script>anchors.add();</script>
-        <script>window.globals.replaceUrl("url='"+document.referrer+"')</script>
+        <!--<script>window.globals.replaceUrl("url='"+document.referrer+"')</script>-->
     </body>
 </html>
