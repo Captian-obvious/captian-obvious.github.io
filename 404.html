@@ -38,8 +38,13 @@
     </head>
     <body>
         <script>
-            setTimeout(function(){},3)
-            location.replace("/error?code=404")
+            setTimeout(function(){
+                if (document.referrer!=''){
+                    document.location.replace('/error?code=404&id='+window.btoa(document.referrer));
+                } else {
+                    document.location.replace('/error?code=404');
+                }
+            },3);
         </script>
         <!--<div class="container-lg px-3 my-5 markdown-body">
             <h1 style="color: #980000">Not Found (404)</h1>
