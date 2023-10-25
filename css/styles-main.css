@@ -28,7 +28,10 @@ a:visited {
     padding: 10px;
 }
 .va_c {
-    vertical-align: center;
+    vertical-align: middle;
+}
+.va_m {
+    vertical-align: middle;
 }
 /* Border themes */
 .border_r_s {
