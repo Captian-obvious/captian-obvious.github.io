@@ -27,6 +27,9 @@ a:visited {
     width: 50%;
     padding: 10px;
 }
+.va_c {
+    vertical-align: center;
+}
 /* Border themes */
 .border_r_s {
     border: 3px solid red;
