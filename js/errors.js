@@ -52,7 +52,7 @@ window.addEventListener('load', function() {
         <h4 style="color: #980000">The server encountered an error, please try again later.</h4>
         <img src="/images/500.png" width="120px" height="120px" />
         <p style="color: #980000">click <a style="color: #ff0000" href="/"><em>here</em></a> to return home.</p>
-        <p style="color: #980000">for error info, click this icon <i class="fa-solid fa-arrow-right-long"></i><div id="ICON"></div></p>
+        <p style="color: #980000">for error info, click this icon <i class="fa-solid fa-arrow-right-long"></i><div id="err-info"></div></p>
         <div id="hiddeninfo" hidden>
             <h3 style="color: #980000">Try:</h3><br>
             <h6 style="color: #980000">1. Checking your connection</h6><br>
