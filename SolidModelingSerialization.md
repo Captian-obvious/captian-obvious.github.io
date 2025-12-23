@@ -1,6 +1,7 @@
 # Research on `UnionOperation`s/`IntersectOperation`s and how they are serialized
 **brought to you by Superduperdev2**
----
+
+## Introduction
 This document is based on information gained from:
 1. `UnionOperation` behavior in Roblox Studio (saving as `rbxm`/`rbxmx`)
 2. Analyzing uploaded assets containing `UnionOperation`s (gained from a game I own, Insert Wars Remastered)
