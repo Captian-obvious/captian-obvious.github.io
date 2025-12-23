@@ -64,7 +64,7 @@ end;
 ```
 This is not perfect, but it will get you close enough for most use cases. <br/>
 You may need to tweak it further depending on your needs.
-<br/>
+
 ## An Interesting edge case: `AssetData` <br/>
 In some cases, the `UnionOperation`/`IntersectOperation` may not have an AssetId property,<br/>
 but instead have an `AssetData` property, which is a BinaryString.<br/>
