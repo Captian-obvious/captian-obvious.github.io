@@ -63,7 +63,7 @@ function centerUnionPivot(union,parent)
 end;
 ```
 <br/>
-> This is not perfect, but it will get you close enough for most use cases. <br/>
+This is not perfect, but it will get you close enough for most use cases. <br/>
 You may need to tweak it further depending on your needs.
 ---<br/>
 ## An Interesting edge case: `AssetData`
