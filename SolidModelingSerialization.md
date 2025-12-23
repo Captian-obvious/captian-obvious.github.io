@@ -6,7 +6,7 @@ This document is based on information gained from:
 2. Analyzing uploaded assets containing `UnionOperation`s (gained from a game I own, Insert Wars Remastered)
 3. Observing output from the "Superduperdev2 Insert Webservice"/"Insert Cloud" API (the JSON)
 4. Analyzing (in a hex editor) specific `rbxm` files (mainly to confirm/disprove theories)
-[//]# END LIST
+<br>
 ---
 ## Some context:
 `UnionOperation`s are a form of Solid Modeling, in our case, used by Roblox and its AssetDelivery system;
@@ -21,7 +21,7 @@ Each `UnionOperation` *if its uploaded, whether as part of a place or model* has
 that points to a `PartOperationAsset`, with 2 datas:
 1. MeshData (useless to us)
 2. ChildData (***URIKA!*** An **RBXM  blob** containing all the solid parts used to make the mesh)
-[//]# END LIST
+<br>
 ---
 the ChildData property of the `PartOperationAsset` instance is parsed the exact same way as the root model is. *its just an RBXM*<br>
 Therefore, we can reconstruct `UnionOperation`s with relative ease.<br>
@@ -86,7 +86,7 @@ this is what we are after. Parse the blob and you will have 1 of 3 things happen
 2. It will contain additonal `UnionOperation`s that you must recurse and parse.
 3. It will contain `NegateOperation`s that have to be converted into `BasePart`s/`UnionOperation`s <br>
 and added to the root `UnionOperation` via `GeometryService:SubtractAsync()` or `BasePart:SubtractAsync()`
-[//]# END LIST
+<br>
 ---
 Once we have reached the bottom of the tree, we can climb back up it using various operations.
 Most of the time, this includes a bunch of `GeometryService:UnionAsync()` or `BasePart:UnionAsync()` calls, and the occasional<br>
