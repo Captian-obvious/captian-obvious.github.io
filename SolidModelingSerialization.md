@@ -85,7 +85,7 @@ this is what we are after. Parse the blob and you will have 1 of 3 things happen
 2. It will contain additonal `UnionOperation`s that you must recurse and parse.
 3. It will contain `NegateOperation`s that have to be converted into `BasePart`s/`UnionOperation`s <br/>
 and added to the root `UnionOperation` via `GeometryService:SubtractAsync()` or `BasePart:SubtractAsync()`
-<br/>
+
 Once we have reached the bottom of the tree, we can climb back up it using various operations.
 Most of the time, this includes a bunch of `GeometryService:UnionAsync()` or `BasePart:UnionAsync()` calls, and the occasional<br/>
 `GeometryService:SubtractAsync()` or `BasePart:SubtractAsync()` call.<br/>
