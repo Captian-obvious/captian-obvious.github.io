@@ -22,7 +22,7 @@ that points to a `PartOperationAsset`, with 2 datas:
 1. MeshData (useless to us)
 2. ChildData (***URIKA!*** An **RBXM  blob** containing all the solid parts used to make the mesh)
 <br/>
----<br/>
+<br/>
 the ChildData property of the `PartOperationAsset` instance is parsed the exact same way as the root model is. *its just an RBXM*<br/>
 Therefore, we can reconstruct `UnionOperation`s with relative ease.<br/>
 *assuming you can get the asset itself which is not stored as **Model** but as **SolidModel** (*`AssetType`*)*<br/>
@@ -65,9 +65,9 @@ end;
 <br/>
 This is not perfect, but it will get you close enough for most use cases. <br/>
 You may need to tweak it further depending on your needs.
----<br/>
-## An Interesting edge case: `AssetData`
-> In some cases, the `UnionOperation`/`IntersectOperation` may not have an AssetId property,<br/>
+<br/>
+## An Interesting edge case: `AssetData` <br/>
+In some cases, the `UnionOperation`/`IntersectOperation` may not have an AssetId property,<br/>
 but instead have an `AssetData` property, which is a BinaryString.<br/>
 Decoding this string will give you a binary blob that is identical to blob of
 the `PartOperationAsset` mentioned earlier.<br/>
@@ -75,7 +75,6 @@ This is likely used for smaller `UnionOperation`s/`IntersectOperation`s that don
 as they can be stored directly within the `UnionOperation`/`IntersectOperation` itself.<br/>
 You can parse this blob in the same way as the `PartOperationAsset`.<br/>
 This is less common, but still something to be aware of when reconstructing `UnionOperation`s/`IntersectOperation`s.
----<br/>
 ## Reconstruction Guide
 In order to reconstruct `UnionOperation`s/`IntersectOperation`s, you must first make sure they don't already have the ChildData stored directly. If they do, parse that and continue from there.<br/>
 If it doesn't, Look for the AssetId property, Once you have confirmed they have an AssetId property (usually they will have at least one of these),<br/>
@@ -86,8 +85,6 @@ this is what we are after. Parse the blob and you will have 1 of 3 things happen
 2. It will contain additonal `UnionOperation`s that you must recurse and parse.
 3. It will contain `NegateOperation`s that have to be converted into `BasePart`s/`UnionOperation`s <br/>
 and added to the root `UnionOperation` via `GeometryService:SubtractAsync()` or `BasePart:SubtractAsync()`
-<br/>
----
 <br/>
 Once we have reached the bottom of the tree, we can climb back up it using various operations.
 Most of the time, this includes a bunch of `GeometryService:UnionAsync()` or `BasePart:UnionAsync()` calls, and the occasional<br/>
