@@ -208,7 +208,7 @@ end;
 And thats pretty much it! <br/>
 You can now reconstruct `UnionOperation`s/`IntersectOperation`s from their serialized properties! <br/>
 Happy coding!
-<br/>
+
 ## Credits
 - Superduperdev2 (Research, Documentation, Code)
 - Insert Wars Remastered (Source of uploaded assets for research)
