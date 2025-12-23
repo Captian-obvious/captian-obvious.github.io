@@ -62,7 +62,6 @@ function centerUnionPivot(union,parent)
     union.Parent=parent;
 end;
 ```
-<br/>
 This is not perfect, but it will get you close enough for most use cases. <br/>
 You may need to tweak it further depending on your needs.
 <br/>
@@ -206,7 +205,6 @@ function mod:applyChildData(childData,isIntersection)
     end;
 end;
 ```
-<br/>
 And thats pretty much it! <br/>
 You can now reconstruct `UnionOperation`s/`IntersectOperation`s from their serialized properties! <br/>
 Happy coding!
