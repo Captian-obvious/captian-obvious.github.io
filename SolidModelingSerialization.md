@@ -36,8 +36,9 @@ called `MeshData2` and `ChildData2` that can contain the following: <br/>
 3. An **RBXM blob** identical to `ChildData`<br/>
 4. Empty/Null data<br/>
 
-From my testing, when these are present, the other `ChildData` and `MeshData` properties will be<br/>
-empty, but (especially `ChildData2`) are parsed identically to `ChildData`<br/>
+From my testing, when these are present, the other `ChildData` and `MeshData` properties of<br/>
+the `UnionOperation`/`IntersectOperation` will be empty,<br/>
+but (especially `ChildData2`) are parsed identically to `ChildData`<br/>
 unless they contain `CSGPHS` data. As for the `UnionOperation`/`IntersectOperation` itself<br/>
 it appears to encode a secondary set of data called `PhysicsData`.<br/>
 Also, from what I've observed this `PartOperationAsset` stores the **unscaled** mesh.<br/>
