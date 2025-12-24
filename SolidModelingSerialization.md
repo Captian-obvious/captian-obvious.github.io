@@ -37,7 +37,7 @@ called `MeshData2` and `ChildData2` that can contain the following: <br/>
 4. Empty/Null data<br/>
 
 From my testing, when these are present (especially `ChildData2`),<br/>
-they are parsed identically to `ChildData`<br/>
+they are parsed identically to `ChildData`, unless they contain `CSGPHS` data<br/>
 As for the `UnionOperation`/`IntersectOperation` itself<br/>
 it appears to encode a secondary set of data called `PhysicsData`.<br/>
 Also, from what I've observed this `PartOperationAsset` stores the **unscaled** mesh.<br/>
