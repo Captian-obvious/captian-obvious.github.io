@@ -37,21 +37,21 @@ called `MeshData2` and `ChildData2` that can contain the following: <br/>
 4. Empty/Null data<br/>
 
 From my testing, when these are present, the other `ChildData` and `MeshData` properties of<br/>
-the `UnionOperation`/`IntersectOperation` will be empty,<br/>
-but (especially `ChildData2`) are parsed identically to `ChildData`<br/>
+the `UnionOperation` will be empty, but (especially `ChildData2`) are parsed identically to `ChildData`<br/>
 unless they contain `CSGPHS` data. As for the `UnionOperation`/`IntersectOperation` itself<br/>
 it appears to encode a secondary set of data called `PhysicsData`.<br/>
-Also, from what I've observed this `PartOperationAsset` stores the **unscaled** mesh.<br/>
+Also, from what I've observed the `PartOperationAsset` stores the **unscaled** mesh.<br/>
 you have to apply the rest of the (`UnionOperation`/`IntersectOperation`) properties to make it work.<br/>
 When not uploaded it appears to store these properties directly.<br/>
-Do note this is **recursive**, so some of these also encode additional `UnionOperation`s/`IntersectOperation`s that need to be handled in the same way.<br/>
-This is from limited testing and may not be accurate for all versions of CSG, but its a starting point.<br/>
-There are many ways this can be implemented, but the way I would suggest doing so is a little complex but not too difficult.<br/>
-You can write an RBXM parser in Lua, and when you encounter a `UnionOperation`/`IntersectOperation`, whether in the Lua parser,<br/>
-or an external one, look for the above properties, and if they are present parse them as such.<br/>
+Do note this is **recursive**, so some of these also encode additional `UnionOperation`s/`IntersectOperation`s<br/>
+that need to be handled in the same way. This is from limited testing and may not be accurate<br/> 
+for all versions of CSG, but its a starting point. There are many ways this can be implemented,<br/>
+but the way I would suggest doing so is a little complex but not too difficult.<br/>
+You can write an RBXM parser in Lua, and when you encounter a `UnionOperation`/`IntersectOperation` <br/>whether in a Lua parser, or an external one, look for the above properties,<br/>
+and if they are present parse them as such.<br/>
 **IMPORTANT**:<br/>
 With this method the pivot will not always be in the correct spot, you will have to adjust it manually.<br/>
-This is because the `ChildData` only contains the raw parts (with their *own* transforms), and not the `UnionOperation`/`IntersectOperation` transform data.<br/>
+This is because the `ChildData` only contains the raw parts (with their *own* transforms), and not the `UnionOperation` transform data.<br/>
 You can calculate the correct pivot by averaging the positions of all the parts used to create it,<br/>
 or make a temporary model and use the center of its bounding box *shown below*.<br/>
 ```lua
@@ -75,12 +75,12 @@ This is not perfect, but it will get you close enough for most use cases. <br/>
 You may need to tweak it further depending on your needs.
 
 ## An Interesting edge case: `AssetData` <br/>
-In some cases, the `UnionOperation`/`IntersectOperation` may not have an `AssetId` property,<br/>
+In some cases, the `UnionOperation` may not have an `AssetId` property,<br/>
 but instead have an `AssetData` property, which is a BinaryString.<br/>
 Decoding this string will give you a binary blob that is identical to blob of
 the `PartOperationAsset` mentioned earlier.<br/>
-This is likely used for smaller `UnionOperation`s/`IntersectOperation`s that don't need to be uploaded separately.<br/>
-as they can be stored directly within the `UnionOperation`/`IntersectOperation` itself.<br/>
+This is likely used for smaller `UnionOperation`s that don't need to be uploaded separately.<br/>
+as they can be stored directly within the `UnionOperation`s itself.<br/>
 You can parse this blob in the same way as the `PartOperationAsset`.<br/>
 This is less common, but still something to be aware of when reconstructing `UnionOperation`s/`IntersectOperation`s.
 ## Reconstruction Guide
