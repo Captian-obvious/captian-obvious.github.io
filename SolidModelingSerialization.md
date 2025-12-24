@@ -11,27 +11,35 @@ This document is based on information gained from:
 ## Some context:
 `UnionOperation`s are a form of Solid Modeling, in our case, used by Roblox and its AssetDelivery system;
 They are what is refered to as Constructive Solid Geometry (CSG), fancy words saying "is made of multiple different parts".<br/>
-Each one has MeshData, PhysicsData and ChildData, all of which are used by the engine to render, simulate, and construct the object.<br/>
+Each one has `MeshData`, `PhysicsData`, and `ChildData`, all of which are used by the engine to render, simulate, and construct the object.<br/>
 For quite a while we all thought they stored a custom format containing all parts,<br/>
 including a operation tree, physics info, and mesh data, but new research (i.e. this documentation)<br/>
 suggests its a lot simpler than that.
 
 ## What was discovered:
 `UnionOperation`s are stored in an interesting, but insanely easy to replicate way.<br/>
-Each `UnionOperation` *if its uploaded, whether as part of a place or model* has an AssetId property that is not visible outside of apis,<br/>
-that points to a `PartOperationAsset`, with 2 datas:
-1. MeshData (useless to us)
-2. ChildData (***URIKA!*** An **RBXM  blob** containing all the solid parts used to make the mesh)
+Each `UnionOperation` *if its uploaded, whether as part of a place or model* has an `AssetId` property that is not visible outside of apis,<br/>
+that points to a `PartOperationAsset`, with 2 sets of data:
+1. `MeshData` (useless to us)
+2. `ChildData` (***URIKA!*** An **RBXM  blob** containing all the solid parts used to make the mesh)
 
-the ChildData property of the `PartOperationAsset` instance is parsed the exact same way as the root model is. *its just an RBXM*<br/>
+the `ChildData` property of the `PartOperationAsset` instance is a **RBXM blob**, and is parsed<br/>
+identically to a normal RBXM file.<br/>
 Therefore, we can reconstruct `UnionOperation`s with relative ease.<br/>
 *assuming you can get the asset itself which is not stored as **Model** but as **SolidModel** (*`AssetType`*)*<br/>
-as to whats in MeshData, XOR encrypted CSGMDL data<br/>
+as to whats in `MeshData`, XOR encrypted `CSGMDL` data<br/>
 *basically a mesh*<br/>
-Do note there are things called MeshData2 and ChildData2 that can either contain PhysicsData OR an **RBXM blob**,<br/>
-these would be parsed identically to ChildData in that case<br/>
-the `UnionOperation`/`IntersectOperation` itself<br/>
-appears to encode a secondary set of data called "PhysicsData".<br/>
+Do note there are additional properties for the `UnionOperation`/`IntersectOperation` <br/>
+called `MeshData2` and `ChildData2` that can contain the following: <br/>
+1. `CSGPHS` data (PhysicsData)
+2. Their respective RBXM/mesh blobs<br/>
+3. An **RBXM blob** identical to `ChildData`<br/>
+4. Empty/Null data<br/>
+
+From my testing, when these are present (especially `ChildData2`),<br/>
+they are parsed identically to `ChildData`<br/>
+As for the `UnionOperation`/`IntersectOperation` itself<br/>
+it appears to encode a secondary set of data called `PhysicsData`.<br/>
 Also, from what I've observed this `PartOperationAsset` stores the **unscaled** mesh.<br/>
 you have to apply the rest of the (`UnionOperation`/`IntersectOperation`) properties to make it work.<br/>
 When not uploaded it appears to store these properties directly.<br/>
@@ -42,7 +50,7 @@ You can write an RBXM parser in Lua, and when you encounter a `UnionOperation`/`
 or an external one, look for the above properties, and if they are present parse them as such.<br/>
 **IMPORTANT**:<br/>
 With this method the pivot will not always be in the correct spot, you will have to adjust it manually.<br/>
-This is because the ChildData only contains the raw parts (with their *own* transforms), and not the `UnionOperation`/`IntersectOperation` transform data.<br/>
+This is because the `ChildData` only contains the raw parts (with their *own* transforms), and not the `UnionOperation`/`IntersectOperation` transform data.<br/>
 You can calculate the correct pivot by averaging the positions of all the parts used to create it,<br/>
 or make a temporary model and use the center of its bounding box *shown below*.<br/>
 ```lua
@@ -66,7 +74,7 @@ This is not perfect, but it will get you close enough for most use cases. <br/>
 You may need to tweak it further depending on your needs.
 
 ## An Interesting edge case: `AssetData` <br/>
-In some cases, the `UnionOperation`/`IntersectOperation` may not have an AssetId property,<br/>
+In some cases, the `UnionOperation`/`IntersectOperation` may not have an `AssetId` property,<br/>
 but instead have an `AssetData` property, which is a BinaryString.<br/>
 Decoding this string will give you a binary blob that is identical to blob of
 the `PartOperationAsset` mentioned earlier.<br/>
@@ -75,10 +83,10 @@ as they can be stored directly within the `UnionOperation`/`IntersectOperation` 
 You can parse this blob in the same way as the `PartOperationAsset`.<br/>
 This is less common, but still something to be aware of when reconstructing `UnionOperation`s/`IntersectOperation`s.
 ## Reconstruction Guide
-In order to reconstruct `UnionOperation`s/`IntersectOperation`s, you must first make sure they don't already have the ChildData stored directly. If they do, parse that and continue from there.<br/>
-If it doesn't, Look for the AssetId property, Once you have confirmed they have an AssetId property (usually they will have at least one of these),<br/>
+In order to reconstruct `UnionOperation`s/`IntersectOperation`s, you must first make sure they don't already have the `ChildData` stored directly. If they do, parse that and continue from there.<br/>
+If it doesn't, Look for the `AssetId` property, Once you have found an `AssetId` property (usually they will have at least one of these),<br/>
 Fetch it from the asset storage and parse it. You will end up with a `PartOperationAsset` that has both of the required properties.<br/>
-ChildData is an **RBXM blob** and contains the parts used to construct the **unscaled** mesh, <br/>
+`ChildData` is an **RBXM blob** and contains the parts used to construct the **unscaled** mesh, <br/>
 this is what we are after. Parse the blob and you will have 1 of 3 things happen: 
 1. It will just be directly all the parts used, and can be reconnected via `GeometryService:UnionAsync()` or `BasePart:UnionAsync()`
 2. It will contain additonal `UnionOperation`s that you must recurse and parse.
