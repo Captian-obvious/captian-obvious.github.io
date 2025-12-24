@@ -23,8 +23,6 @@ that points to a `PartOperationAsset`, with 2 datas:
 1. MeshData (useless to us)
 2. ChildData (***URIKA!*** An **RBXM  blob** containing all the solid parts used to make the mesh)
 
----
-
 the ChildData property of the `PartOperationAsset` instance is parsed the exact same way as the root model is. *its just an RBXM*<br/>
 Therefore, we can reconstruct `UnionOperation`s with relative ease.<br/>
 *assuming you can get the asset itself which is not stored as **Model** but as **SolidModel** (*`AssetType`*)*<br/>
