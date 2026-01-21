@@ -58,9 +58,9 @@ but the way I would suggest doing so is a little complex but not too difficult.<
 When you encounter a `UnionOperation`/`IntersectOperation` in an RBXM parser,<br/>
 look for the above properties. For `AssetId`, fetch the `PartOperationAsset` first, then<br/>
 parse the `ChildData`/`ChildData2` property (whichever is present) as an RBXM file.<br/>
-In the case the `ChildData`/`ChildData2` is present directly, parse it as an RBXM file.<br/>
+In the case the `ChildData`/`ChildData2` is present directly, just parse it as an RBXM file.<br/>
 As already mentioned, this is **recursive**, so you may have to do this multiple times.<br/>
-**In Both cases, this will give you the parts used to create the mesh.**<br/>
+**In both cases, this will give you the parts used to create the mesh.**<br/>
 You can then use `GeometryService` calls or `BasePart` CSG API calls to recreate <br/>
 the `UnionOperation`/`IntersectOperation`.<br/>
 **IMPORTANT**:<br/>
