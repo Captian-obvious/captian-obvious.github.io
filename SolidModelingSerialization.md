@@ -54,8 +54,8 @@ the `UnionOperation` will be empty, but (especially `ChildData2`) are parsed ide
 unless they contain `CSGPHS` data. As for the `UnionOperation`/`IntersectOperation` itself<br/>
 it appears to encode a secondary set of data called `PhysicsData`/`PhysicalConfigData`.<br/>
 Also, from what I've observed the `PartOperationAsset` stores the **unscaled** mesh.<br/>
-you have to apply the rest of the (`UnionOperation`/`IntersectOperation`) properties to make it work.<br/>
-When not uploaded it appears to store these properties directly.<br/>
+As such you have to apply the rest of the (`UnionOperation`/`IntersectOperation`) properties to<br/>
+make it work. When not uploaded it appears to store these properties directly.<br/>
 This is also **recursive**, so some of these also encode additional `UnionOperation`s/`IntersectOperation`s<br/>
 that need to be handled in the same way. This is from limited testing and may not be accurate<br/> 
 for all versions of CSG, but its a starting point. There are a few ways this can be implemented,<br/>
