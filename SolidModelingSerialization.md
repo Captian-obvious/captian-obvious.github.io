@@ -7,6 +7,7 @@ author: Superduperdev2/@Captian-obvious
 ---
 
 # Research on `UnionOperation`s/`IntersectOperation`s and how they are serialized
+
 **brought to you by Superduperdev2**
 
 ## Introduction
@@ -16,6 +17,10 @@ This document is based on information gained from:
 3. Observing output from the "Superduperdev2 Insert Webservice"/"Insert Cloud" API (the JSON)
 4. Analyzing (in a hex editor) specific `rbxm` files (mainly to confirm/disprove theories)
 
+Research was done over multiple weeks, and this document is a summary of findings.<br/>
+It is not 100% complete nor final as Roblox could change it at any time,<br/>
+but should give a good idea of how `UnionOperation`s/`IntersectOperation`s <br/>
+are currently serialized.<br/>
 ## Some context:
 `UnionOperation`s are a form of Solid Modeling, in our case, used by Roblox and its AssetDelivery system;
 They are what is refered to as Constructive Solid Geometry (CSG), fancy words saying "is made of multiple different parts".<br/>
