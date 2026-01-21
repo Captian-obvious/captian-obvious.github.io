@@ -1,3 +1,11 @@
+---
+title: Solid Modeling Serialization
+description: Research on `UnionOperation`s/`IntersectOperation`s and how they are serialized
+category: Documentation
+tags: [Documentation, Solid Modeling, CSG, UnionOperation, IntersectOperation]
+author: Superduperdev2/@Captian-obvious
+---
+
 # Research on `UnionOperation`s/`IntersectOperation`s and how they are serialized
 **brought to you by Superduperdev2**
 
@@ -43,7 +51,7 @@ it appears to encode a secondary set of data called `PhysicsData`.<br/>
 Also, from what I've observed the `PartOperationAsset` stores the **unscaled** mesh.<br/>
 you have to apply the rest of the (`UnionOperation`/`IntersectOperation`) properties to make it work.<br/>
 When not uploaded it appears to store these properties directly.<br/>
-Do note this is **recursive**, so some of these also encode additional `UnionOperation`s/`IntersectOperation`s<br/>
+This is also **recursive**, so some of these also encode additional `UnionOperation`s/`IntersectOperation`s<br/>
 that need to be handled in the same way. This is from limited testing and may not be accurate<br/> 
 for all versions of CSG, but its a starting point. There are many ways this can be implemented,<br/>
 but the way I would suggest doing so is a little complex but not too difficult.<br/>
@@ -111,6 +119,7 @@ Although it will take some trial and error, you now can reliably create `UnionOp
 their RBXM/RBXMX data.
 
 *note: the below code is from my implementation of this, available in [UnionOperation.lua](../module/Dependancies/UnionOperation.lua)*
+
 ```lua
 function mod:applyChildData(childData,isIntersection)
     local suc,res=pcall(function()
@@ -214,6 +223,7 @@ function mod:applyChildData(childData,isIntersection)
     end;
 end;
 ```
+
 And thats pretty much it! <br/>
 You can now reconstruct `UnionOperation`s/`IntersectOperation`s from their serialized properties! <br/>
 Happy coding!
