@@ -47,16 +47,22 @@ called `MeshData2` and `ChildData2` that can contain the following: <br/>
 From my testing, when these are present, the other `ChildData` and `MeshData` properties of<br/>
 the `UnionOperation` will be empty, but (especially `ChildData2`) are parsed identically to `ChildData`<br/>
 unless they contain `CSGPHS` data. As for the `UnionOperation`/`IntersectOperation` itself<br/>
-it appears to encode a secondary set of data called `PhysicsData`.<br/>
+it appears to encode a secondary set of data called `PhysicsData`/`PhysicalConfigData`.<br/>
 Also, from what I've observed the `PartOperationAsset` stores the **unscaled** mesh.<br/>
 you have to apply the rest of the (`UnionOperation`/`IntersectOperation`) properties to make it work.<br/>
 When not uploaded it appears to store these properties directly.<br/>
 This is also **recursive**, so some of these also encode additional `UnionOperation`s/`IntersectOperation`s<br/>
 that need to be handled in the same way. This is from limited testing and may not be accurate<br/> 
-for all versions of CSG, but its a starting point. There are many ways this can be implemented,<br/>
+for all versions of CSG, but its a starting point. There are a few ways this can be implemented,<br/>
 but the way I would suggest doing so is a little complex but not too difficult.<br/>
-You can write an RBXM parser in Lua, and when you encounter a `UnionOperation`/`IntersectOperation` <br/>whether in a Lua parser, or an external one, look for the above properties,<br/>
-and if they are present parse them as such.<br/>
+When you encounter a `UnionOperation`/`IntersectOperation` in an RBXM parser,<br/>
+look for the above properties. For `AssetId`, fetch the `PartOperationAsset` first, then<br/>
+parse the `ChildData`/`ChildData2` property (whichever is present) as an RBXM file.<br/>
+In the case the `ChildData`/`ChildData2` is present directly, parse it as an RBXM file.<br/>
+As already mentioned, this is **recursive**, so you may have to do this multiple times.<br/>
+**In Both cases, this will give you the parts used to create the mesh.**<br/>
+You can then use `GeometryService` calls or `BasePart` CSG API calls to recreate <br/>
+the `UnionOperation`/`IntersectOperation`.<br/>
 **IMPORTANT**:<br/>
 With this method the pivot will not always be in the correct spot, you will have to adjust it manually.<br/>
 This is because the `ChildData` only contains the raw parts (with their *own* transforms), and not the `UnionOperation` transform data.<br/>
