@@ -3,7 +3,8 @@ title: Solid Modeling Serialization
 description: Research on `UnionOperation`s/`IntersectOperation`s and how they are serialized
 category: Documentation
 tags: [Documentation, Solid Modeling, CSG, UnionOperation, IntersectOperation]
-author: Superduperdev2/@Captian-obvious
+authors:
+    - Superduperdev2/@Captian-obvious
 ---
 
 # Research on `UnionOperation`s/`IntersectOperation`s and how they are serialized
@@ -17,7 +18,7 @@ This document is based on information gained from:
 3. Observing output from the "Superduperdev2 Insert Webservice"/"Insert Cloud" API (the JSON)
 4. Analyzing (in a hex editor) specific `rbxm` files (mainly to confirm/disprove theories)
 
-Research was done over multiple weeks, and this document is a summary of findings.<br/>
+Research was done over multiple weeks, and this document is a summary of my findings.<br/>
 It is not 100% complete nor final as Roblox could change it at any time,<br/>
 but should give a good idea of how `UnionOperation`s/`IntersectOperation`s <br/>
 are currently serialized.<br/>
@@ -31,8 +32,9 @@ suggests its a lot simpler than that.
 
 ## What was discovered:
 `UnionOperation`s are stored in an interesting, but insanely easy to replicate way.<br/>
-Each `UnionOperation` *if its uploaded, whether as part of a place or model* has an `AssetId` property that is not visible outside of apis,<br/>
-that points to a `PartOperationAsset`, with 2 sets of data:
+Each `UnionOperation` *if its uploaded, whether as part of a place or model* has an `AssetId`<br/>
+property that is not visible outside of apis, that points to a `PartOperationAsset`, with 2 sets<br/>
+of data:
 1. `MeshData` (useless to us)
 2. `ChildData` (***URIKA!*** An **RBXM  blob** containing all the solid parts used to make the mesh)
 
@@ -44,15 +46,16 @@ as to whats in `MeshData`, XOR encrypted `CSGMDL` data<br/>
 *basically a mesh*<br/>
 Do note there are additional properties for the `UnionOperation`/`IntersectOperation` <br/>
 called `MeshData2` and `ChildData2` that can contain the following: <br/>
-1. `CSGPHS` data (PhysicsData)
-2. Their respective RBXM/mesh blobs<br/>
-3. An **RBXM blob** identical to `ChildData`<br/>
+1. *wierdly* `CSGPHS` data (PhysicsData?)
+2. Their respective RBXM/mesh blobs
+3. An **RBXM blob** identical to `ChildData`
 4. Empty/Null data<br/>
 
-From my testing, when these are present, the other `ChildData` and `MeshData` properties of<br/>
+When these are present, the other `ChildData` and `MeshData` properties of<br/>
 the `UnionOperation` will be empty, but (especially `ChildData2`) are parsed identically to `ChildData`<br/>
 unless they contain `CSGPHS` data. As for the `UnionOperation`/`IntersectOperation` itself<br/>
-it appears to encode a secondary set of data called `PhysicsData`/`PhysicalConfigData`.<br/>
+it appears to encode a secondary set of data called `PhysicsData`/`PhysicalConfigData`<br/>
+that starts with the bytes `CSGPHS` and is likely the collision data for the mesh.<br/>
 Also, from what I've observed the `PartOperationAsset` stores the **unscaled** mesh.<br/>
 As such you have to apply the rest of the (`UnionOperation`/`IntersectOperation`) properties to<br/>
 make it work. When not uploaded it appears to store these properties directly.<br/>
@@ -101,13 +104,15 @@ the `PartOperationAsset` mentioned earlier.<br/>
 This is likely used for smaller `UnionOperation`s that don't need to be uploaded separately.<br/>
 as they can be stored directly within the `UnionOperation`s itself.<br/>
 You can parse this blob in the same way as the `PartOperationAsset`.<br/>
-This is less common, but still something to be aware of when reconstructing `UnionOperation`s/`IntersectOperation`s.
+This is not common, nor often, but still something to be aware of <br/>
+when reconstructing `UnionOperation`s/`IntersectOperation`s.<br/>
 ## Reconstruction Guide
-In order to reconstruct `UnionOperation`s/`IntersectOperation`s, you must first make sure they don't already have the `ChildData` stored directly. If they do, parse that and continue from there.<br/>
+In order to reconstruct `UnionOperation`s/`IntersectOperation`s, you must first make sure they don't already have the `ChildData`/`ChildData2` stored directly. If they do, parse that and continue from there.<br/>
 If it doesn't, Look for the `AssetId` property, Once you have found an `AssetId` property (usually they will have at least one of these),<br/>
 Fetch it from the asset storage and parse it. You will end up with a `PartOperationAsset` that has both of the required properties.<br/>
-`ChildData` is an **RBXM blob** and contains the parts used to construct the **unscaled** mesh, <br/>
-this is what we are after. Parse the blob and you will have 1 of 3 things happen: 
+The `PartOperationAsset`'s `ChildData` is an **RBXM blob** and contains the parts used to construct<br/>
+the **unscaled** mesh, this is what we are after.<br/>
+Parse the blob and you will have 1 of 3 things happen: 
 1. It will just be directly all the parts used, and can be reconnected via `GeometryService:UnionAsync()` or `BasePart:UnionAsync()`
 2. It will contain additonal `UnionOperation`s that you must recurse and parse.
 3. It will contain `NegateOperation`s that have to be converted into `BasePart`s/`UnionOperation`s <br/>
