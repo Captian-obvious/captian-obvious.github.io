@@ -4,7 +4,7 @@ description: Research on `UnionOperation`s/`IntersectOperation`s and how they ar
 category: Documentation
 tags: [Documentation, Solid Modeling, CSG, UnionOperation, IntersectOperation]
 authors:
-    - Superduperdev2/@Captian-obvious
+    - Captian-obvious (aka Superduperdev2)
 ---
 
 # Research on `UnionOperation`s/`IntersectOperation`s and how they are serialized
@@ -35,18 +35,17 @@ suggests its a lot simpler than that.
 Each `UnionOperation` *if its uploaded, whether as part of a place or model* has an `AssetId`<br/>
 property that is not visible outside of apis, that points to a `PartOperationAsset`, with 2 sets<br/>
 of data:
-1. `MeshData` (useless to us)
-2. `ChildData` (***URIKA!*** An **RBXM  blob** containing all the solid parts used to make the mesh)
+1. `MeshData` (A **BinaryString** containing XOR encrypted `CSGMDL` data {*irrelavent to reconstruction*})<br/>
+2. `ChildData` (***URIKA!*** An **RBXM  blob** containing all of the `BasePart`s used to make the mesh)<br/>
+*Note: The `PartOperationAsset` may also contain additional properties, but they are not relevant to this documentation*<br/>
 
 the `ChildData` property of the `PartOperationAsset` instance is a **RBXM blob**, and is parsed<br/>
 identically to a normal RBXM file.<br/>
 Therefore, we can reconstruct `UnionOperation`s with relative ease.<br/>
 *assuming you can get the asset itself which is not stored as **Model** but as **SolidModel** (*`AssetType`*)*<br/>
-as to whats in `MeshData`, XOR encrypted `CSGMDL` data<br/>
-*basically a mesh*<br/>
 Do note there are additional properties for the `UnionOperation`/`IntersectOperation` <br/>
 called `MeshData2` and `ChildData2` that can contain the following: <br/>
-1. *wierdly* `CSGPHS` data (PhysicsData?)
+1. *weirdly* `CSGPHS` data (PhysicsData?)
 2. Their respective RBXM/mesh blobs
 3. An **RBXM blob** identical to `ChildData`
 4. Empty/Null data<br/>
@@ -68,14 +67,15 @@ look for the above properties. For `AssetId`, fetch the `PartOperationAsset` fir
 parse the `ChildData`/`ChildData2` property (whichever is present) as an RBXM file.<br/>
 In the case the `ChildData`/`ChildData2` is present directly, just parse it as an RBXM file.<br/>
 As already mentioned, this is **recursive**, so you may have to do this multiple times.<br/>
-**In both cases, this will give you the parts used to create the mesh.**<br/>
+**In both cases, this will give you the `BasePart`s used to create the mesh.**<br/>
 You can then use `GeometryService` calls or `BasePart` CSG API calls to recreate <br/>
 the `UnionOperation`/`IntersectOperation`.<br/>
 **IMPORTANT**:<br/>
 With this method the pivot will not always be in the correct spot, you will have to adjust it manually.<br/>
-This is because the `ChildData` only contains the raw parts (with their *own* transforms), and not the `UnionOperation` transform data.<br/>
-You can calculate the correct pivot by averaging the positions of all the parts used to create it,<br/>
-or make a temporary model and use the center of its bounding box *shown below*.<br/>
+This is because the `ChildData` only contains the raw `BasePart`s (with their *own* **relative** transforms),<br/>
+and not the `UnionOperation` transform data. You can calculate the correct pivot by averaging<br/>
+the positions of all the `BasePart`s used to create it, or make a temporary model and use the center<br/>
+of its bounding box *as shown below*.<br/>
 ```lua
 function centerUnionPivot(union,parent)
     if union:IsA("PartOperation") then
@@ -127,12 +127,11 @@ they are **created** with `GeometryService:IntersectAsync()` or `BasePart:Inters
 Also it seems that Roblox treats `IntersectOperation`s differently internally,<br/>
 as they have different behavior when it comes to physics and rendering.<br/>
 *ie. they don't render the same way as `UnionOperation`s, and have different collision behavior*<br/>
-Roblox Studio also creates `IntersectOperation`s in a strange way where it intersects all parts first,<br/>
-then intersects the result with the base part. (lines up with my testing)<br/>
-Simply by looking at the classname and seeing if its an `IntersectOperation` or not,<br/>
-we can reliably determine if we need to adjust the pipeline to accomodate these differences.<br/>
-Although it will take some trial and error, you now can reliably create `UnionOperation`s from<br/>
-their RBXM/RBXMX data.
+Roblox Studio also creates `IntersectOperation`s in a strange way where it intersects all selected<br/> `BasePart`s first, then intersects the result with the first selected `BasePart`.<br/>
+(lines up with my testing). As such, simply looking at the classname and checking<br/>
+if its an `IntersectOperation` or not, we can reliably determine if we need to adjust<br/>
+the pipeline to accomodate these differences. Although it will take some trial and error,<br/>
+you now can reliably create `UnionOperation`s from their RBXM/RBXMX data.
 
 *note: the below code is from my implementation of this, available in [UnionOperation.lua](../module/Dependancies/UnionOperation.lua)*
 
