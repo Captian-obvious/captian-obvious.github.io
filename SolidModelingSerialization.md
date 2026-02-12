@@ -18,23 +18,22 @@ This document is based on information gained from:
 3. Observing output from the "Superduperdev2 Insert Webservice"/"Insert Cloud" API (the JSON)
 4. Analyzing (in a hex editor) specific `rbxm` files (mainly to confirm/disprove theories)
 
-Research was done over multiple weeks, and this document is a summary of my findings.<br/>
+Research was done over multiple weeks, and this document is a summary of findings.<br/>
 It is not 100% complete nor final as Roblox could change it at any time,<br/>
 but should give a good idea of how `UnionOperation`s/`IntersectOperation`s <br/>
 are currently serialized.<br/>
 ## Some context:
 `UnionOperation`s are a form of Solid Modeling, in our case, used by Roblox and its AssetDelivery system;
 They are what is refered to as Constructive Solid Geometry (CSG), fancy words saying "is made of multiple different parts".<br/>
-Each one has `MeshData`, `PhysicsData`, and `ChildData`, all of which are used by the engine to render, simulate, and construct the object.<br/>
-For quite a while we all thought they stored a custom format containing all parts,<br/>
-including a operation tree, physics info, and mesh data, but new research (i.e. this documentation)<br/>
+Each one has `MeshData`, `PhysicsData`, and `ChildData`, all of which are used by the engine to render, simulate, and "Seperate" the object.<br/>
+For quite a while it was thought they stored a custom format containing all parts,<br/>
+including an operation tree, physics info, and mesh data, but new research (i.e. this documentation)<br/>
 suggests its a lot simpler than that.
 
 ## What was discovered:
 `UnionOperation`s are stored in an interesting, but insanely easy to replicate way.<br/>
-Each `UnionOperation` *if its uploaded, whether as part of a place or model* has an `AssetId`<br/>
-property that is not visible outside of apis, that points to a `PartOperationAsset`, with 2 sets<br/>
-of data:
+Each `UnionOperation` *if its uploaded, whether as part of a place or model* has a hidden `AssetId`<br/>
+property that points to a `PartOperationAsset`, with 2 sets of data:
 1. `MeshData` (A **BinaryString** containing XOR encrypted `CSGMDL` data {*irrelavent to reconstruction*})<br/>
 2. `ChildData` (***URIKA!*** An **RBXM  blob** containing all of the `BasePart`s used to make the mesh)<br/>
 *Note: The `PartOperationAsset` may also contain additional properties, but they are not relevant to this documentation*<br/>
@@ -42,7 +41,7 @@ of data:
 the `ChildData` property of the `PartOperationAsset` instance is a **RBXM blob**, and is parsed<br/>
 identically to a normal RBXM file.<br/>
 Therefore, we can reconstruct `UnionOperation`s with relative ease.<br/>
-*assuming you can get the asset itself which is not stored as **Model** but as **SolidModel** (*`AssetType`*)*<br/>
+*IF you fetch the asset which is not stored as the `AssetType` **Model** but instead as **SolidModel***<br/>
 Do note there are additional properties for the `UnionOperation`/`IntersectOperation` <br/>
 called `MeshData2` and `ChildData2` that can contain the following: <br/>
 1. *weirdly* `CSGPHS` data (PhysicsData?)
@@ -51,8 +50,8 @@ called `MeshData2` and `ChildData2` that can contain the following: <br/>
 4. Empty/Null data<br/>
 
 When these are present, the other `ChildData` and `MeshData` properties of<br/>
-the `UnionOperation` will be empty, but (especially `ChildData2`) are parsed identically to `ChildData`<br/>
-unless they contain `CSGPHS` data. As for the `UnionOperation`/`IntersectOperation` itself<br/>
+the `UnionOperation` will be empty, but `ChildData2` is parsed identically to `ChildData`<br/>
+unless it contains `CSGPHS` data. As for the `UnionOperation`/`IntersectOperation` itself<br/>
 it appears to encode a secondary set of data called `PhysicsData`/`PhysicalConfigData`<br/>
 that starts with the bytes `CSGPHS` and is likely the collision data for the mesh.<br/>
 Also, from what I've observed the `PartOperationAsset` stores the **unscaled** mesh.<br/>
@@ -60,33 +59,37 @@ As such you have to apply the rest of the (`UnionOperation`/`IntersectOperation`
 make it work. When not uploaded it appears to store these properties directly.<br/>
 This is also **recursive**, so some of these also encode additional `UnionOperation`s/`IntersectOperation`s<br/>
 that need to be handled in the same way. This is from limited testing and may not be accurate<br/> 
-for all versions of CSG, but its a starting point. There are a few ways this can be implemented,<br/>
+for all versions of Roblox's CSG, but its a starting point. There are a few ways this can be implemented,<br/>
 but the way I would suggest doing so is a little complex but not too difficult.<br/>
 When you encounter a `UnionOperation`/`IntersectOperation` in an RBXM parser,<br/>
 look for the above properties. For `AssetId`, fetch the `PartOperationAsset` first, then<br/>
 parse the `ChildData`/`ChildData2` property (whichever is present) as an RBXM file.<br/>
 In the case the `ChildData`/`ChildData2` is present directly, just parse it as an RBXM file.<br/>
 As already mentioned, this is **recursive**, so you may have to do this multiple times.<br/>
-**In both cases, this will give you the `BasePart`s used to create the mesh.**<br/>
+**In both cases, this will yield the `BasePart`s used to create the mesh.**<br/>
 You can then use `GeometryService` calls or `BasePart` CSG API calls to recreate <br/>
-the `UnionOperation`/`IntersectOperation`.<br/>
-**IMPORTANT**:<br/>
-With this method the pivot will not always be in the correct spot, you will have to adjust it manually.<br/>
-This is because the `ChildData` only contains the raw `BasePart`s (with their *own* **relative** transforms),<br/>
-and not the `UnionOperation` transform data. You can calculate the correct pivot by averaging<br/>
-the positions of all the `BasePart`s used to create it, or make a temporary model and use the center<br/>
-of its bounding box *as shown below*.<br/>
+the `UnionOperation`/`IntersectOperation`.
+### IMPORTANT:
+With this method the pivot will not always be in the correct spot. As such, you will have to adjust<br/>
+it manually. This is because the `ChildData` only contains the raw `BasePart`s (with their *own* <br/> **relative** transforms), and not the `UnionOperation` transform data. You can calculate the correct pivot<br/>
+by averaging the positions of all the `BasePart`s used to create it, or make a temporary model and use<br/>
+the center of its bounding box *as shown below*.<br/>
+
 ```lua
 function centerUnionPivot(union,parent)
-    if union:IsA("PartOperation") then
-        local tempModel = Instance.new("Model");
-        union.Parent = tempModel;
-        tempModel.PrimaryPart = union;
-        local boxCFrame,_=tempModel:GetBoundingBox();
-        local centeredPart=Instance.new("Part",parent);
-        centeredPart.Size=Vector3.new(0,0,0);
-        centeredPart.CFrame=boxCFrame;
+    local tempModel = Instance.new("Model");
+    union.Parent = tempModel;
+    tempModel.PrimaryPart = union;
+    local boxCFrame,_=tempModel:GetBoundingBox();
+    local centeredPart=Instance.new("Part",parent);
+    centeredPart.Size=Vector3.new(0,0,0);
+    centeredPart.CFrame=boxCFrame;
+    if (union.ClassName=="PartOperation") then --this is because GeometryService doesn't like mixed classnames, for some reason
         local new=mod.Services.GeometryService:UnionAsync(centeredPart,{union},options)[1];
+        union:SubstituteGeometry(new);
+        new:Destroy();
+    elseif union:IsA("BasePart") then
+        local new=centeredPart:UnionAsync({union},options.CollisionFidelity,options.RenderFidelity);
         union:SubstituteGeometry(new);
         new:Destroy();
     end;
@@ -98,10 +101,10 @@ You may need to tweak it further depending on your needs.
 
 ## An Interesting edge case: `AssetData` <br/>
 In some cases, the `UnionOperation` may not have an `AssetId` property,<br/>
-but instead have an `AssetData` property, which is a BinaryString.<br/>
-Decoding this string will give you a binary blob that is identical to blob of
-the `PartOperationAsset` mentioned earlier.<br/>
-This is likely used for smaller `UnionOperation`s that don't need to be uploaded separately.<br/>
+but instead have an `AssetData` property, which is a **BinaryString**.<br/>
+Decoding this string will yield a binary blob that is identical to blob of<br/>
+the `PartOperationAsset` mentioned earlier. This is likely used for<br/> 
+smaller `UnionOperation`s that don't need to be uploaded separately.<br/>
 as they can be stored directly within the `UnionOperation`s itself.<br/>
 You can parse this blob in the same way as the `PartOperationAsset`.<br/>
 This is not common, nor often, but still something to be aware of <br/>
@@ -171,7 +174,8 @@ function mod:applyChildData(childData,isIntersection)
                 print_if_debug("found");
                 table.insert(negativeParts,partToAttachTo);
                 local old=partToAttachTo;
-                partToAttachTo=Instance.new("Part",model);
+                partToAttachTo=Instance.new("Part");
+                partToAttachTo.Parent=model;
                 partToAttachTo.Size=Vector3.new(0,0,0);
                 partToAttachTo.CFrame=CFrame.new(old.CFrame.Position);
                 partToAttachTo.Anchored=old.Anchored;
@@ -243,6 +247,13 @@ And thats pretty much it! <br/>
 You can now reconstruct `UnionOperation`s/`IntersectOperation`s from their serialized properties! <br/>
 Happy coding!
 
-## Credits
-- Superduperdev2 (Research, Documentation, Code)
-- Insert Wars Remastered (Source of uploaded assets for research)
+## Final notes
+All findings were gained from studying `.rbxm` files in multiple ways, at no point was any software disassembled or dumped. However there is a few other notes worthy to mention:
+- This spec file is purely observatory, it is not affiliated with or endorsed by Roblox Corporation.
+- All findings can be traced to different parts of the document.
+- Roblox could change this at any time, when that happens this spec file will be updated with new findings.
+
+Credits for this document are provided below:
+- Superduperdev2 (Research, Spec file, and Code)
+- SIWeb Network (specifically the Insert Webservice, where uploaded assets were analyzed from)
+- Multiple other helpers (josejr0322,servertechnology)
