@@ -105,7 +105,7 @@ but instead have an `AssetData` property, which is a **BinaryString**.<br/>
 Decoding this string will yield a binary blob that is identical to blob of<br/>
 the `PartOperationAsset` mentioned earlier. This is likely used for<br/> 
 smaller `UnionOperation`s that don't need to be uploaded separately.<br/>
-as they can be stored directly within the `UnionOperation`s itself.<br/>
+as they can be stored directly within the `UnionOperation` itself.<br/>
 You can parse this blob in the same way as the `PartOperationAsset`.<br/>
 This is not common, nor often, but still something to be aware of <br/>
 when reconstructing `UnionOperation`s/`IntersectOperation`s.<br/>
