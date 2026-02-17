@@ -40,11 +40,11 @@ property that points to a `PartOperationAsset`, with 2 sets of data:
 
 the `ChildData` property of the `PartOperationAsset` instance is a **RBXM blob**, and is parsed<br/>
 identically to a normal RBXM file.<br/>
-Therefore, we can reconstruct `UnionOperation`s with relative ease.<br/>
+Therefore, you can reconstruct `UnionOperation`s with relative ease.<br/>
 *IF you fetch the asset which is not stored as the `AssetType` **Model** but instead as **SolidModel***<br/>
 Do note there are additional properties for the `UnionOperation`/`IntersectOperation` <br/>
 called `MeshData2` and `ChildData2` that can contain the following: <br/>
-1. *weirdly* `CSGPHS` data (PhysicsData?)
+1. *weirdly* `CSGPHS` data (PhysicsData?, Possibly caused by `PROP` chunk corruption or a bad parse)
 2. Their respective RBXM/mesh blobs
 3. An **RBXM blob** identical to `ChildData`
 4. Empty/Null data<br/>
@@ -54,13 +54,13 @@ the `UnionOperation` will be empty, but `ChildData2` is parsed identically to `C
 unless it contains `CSGPHS` data. As for the `UnionOperation`/`IntersectOperation` itself<br/>
 it appears to encode a secondary set of data called `PhysicsData`/`PhysicalConfigData`<br/>
 that starts with the bytes `CSGPHS` and is likely the collision data for the mesh.<br/>
-Also, from what I've observed the `PartOperationAsset` stores the **unscaled** mesh.<br/>
+Also, from what was observed the `PartOperationAsset` stores the **unscaled** mesh.<br/>
 As such you have to apply the rest of the (`UnionOperation`/`IntersectOperation`) properties to<br/>
 make it work. When not uploaded it appears to store these properties directly.<br/>
 This is also **recursive**, so some of these also encode additional `UnionOperation`s/`IntersectOperation`s<br/>
 that need to be handled in the same way. This is from limited testing and may not be accurate<br/> 
 for all versions of Roblox's CSG, but its a starting point. There are a few ways this can be implemented,<br/>
-but the way I would suggest doing so is a little complex but not too difficult.<br/>
+but the way this spec would suggest doing so is a little complex but not too difficult.<br/>
 When you encounter a `UnionOperation`/`IntersectOperation` in an RBXM parser,<br/>
 look for the above properties. For `AssetId`, fetch the `PartOperationAsset` first, then<br/>
 parse the `ChildData`/`ChildData2` property (whichever is present) as an RBXM file.<br/>
@@ -114,14 +114,14 @@ In order to reconstruct `UnionOperation`s/`IntersectOperation`s, you must first 
 If it doesn't, Look for the `AssetId` property, Once you have found an `AssetId` property (usually they will have at least one of these),<br/>
 Fetch it from the asset storage and parse it. You will end up with a `PartOperationAsset` that has both of the required properties.<br/>
 The `PartOperationAsset`'s `ChildData` is an **RBXM blob** and contains the parts used to construct<br/>
-the **unscaled** mesh, this is what we are after.<br/>
+the **unscaled** mesh, this is what you are after.<br/>
 Parse the blob and you will have 1 of 3 things happen: 
 1. It will just be directly all the parts used, and can be reconnected via `GeometryService:UnionAsync()` or `BasePart:UnionAsync()`
 2. It will contain additonal `UnionOperation`s that you must recurse and parse.
 3. It will contain `NegateOperation`s that have to be converted into `BasePart`s/`UnionOperation`s <br/>
 and added to the root `UnionOperation` via `GeometryService:SubtractAsync()` or `BasePart:SubtractAsync()`
 
-Once we have reached the bottom of the tree, we can climb back up it using various operations.
+Once you have reached the bottom of the tree, start to climb back up it using various operations.
 Most of the time, this includes a bunch of `GeometryService:UnionAsync()` or `BasePart:UnionAsync()` calls, and the occasional<br/>
 `GeometryService:SubtractAsync()` or `BasePart:SubtractAsync()` call.<br/>
 However, `IntersectOperation`s are special,<br/>
@@ -131,8 +131,8 @@ Also it seems that Roblox treats `IntersectOperation`s differently internally,<b
 as they have different behavior when it comes to physics and rendering.<br/>
 *ie. they don't render the same way as `UnionOperation`s, and have different collision behavior*<br/>
 Roblox Studio also creates `IntersectOperation`s in a strange way where it intersects all selected<br/> `BasePart`s first, then intersects the result with the first selected `BasePart`.<br/>
-(lines up with my testing). As such, simply looking at the classname and checking<br/>
-if its an `IntersectOperation` or not, we can reliably determine if we need to adjust<br/>
+(lines up with observations). As such, simply looking at the classname and checking<br/>
+if its an `IntersectOperation` or not, you can reliably determine if you need to adjust<br/>
 the pipeline to accomodate these differences. Although it will take some trial and error,<br/>
 you now can reliably create `UnionOperation`s from their RBXM/RBXMX data.
 
