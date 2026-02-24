@@ -70,8 +70,8 @@ As already mentioned, this is **recursive**, so you may have to do this multiple
 You can then use `GeometryService` calls or `BasePart` CSG API calls to recreate <br/>
 the `UnionOperation`/`IntersectOperation`.
 ### IMPORTANT:
-With this method the pivot will not always be in the correct spot. As such, you will have to adjust<br/>
-it manually. This is because the `ChildData` only contains the raw `BasePart`s (with their *own* <br/> **relative** transforms), and not the `UnionOperation` transform data. You can calculate the correct pivot<br/>
+With this method the pivot will not always be in the correct spot. As such, it will have to be adjusted<br/>
+manually. This is because the `ChildData` only contains the raw `BasePart`s (with their *own* <br/> **relative** transforms), and not the `UnionOperation` transform data. You can calculate the correct pivot<br/>
 by averaging the positions of all the `BasePart`s used to create it, or make a temporary model and use<br/>
 the center of its bounding box *as shown below*.<br/>
 
@@ -116,11 +116,25 @@ Fetch it from the asset storage and parse it. You will end up with a `PartOperat
 The `PartOperationAsset`'s `ChildData` is an **RBXM blob** and contains the parts used to construct<br/>
 the **unscaled** mesh, this is what you are after.<br/>
 Parse the blob and you will have 1 of 3 things happen: 
-1. It will just be directly all the parts used, and can be reconnected via `GeometryService:UnionAsync()` or `BasePart:UnionAsync()`
+1. It will just be directly all the constitutent `BasePart`s, and can be reconnected via `GeometryService:UnionAsync()`<br/> 
+or `BasePart:UnionAsync()`
 2. It will contain additonal `UnionOperation`s that you must recurse and parse.
-3. It will contain `NegateOperation`s that have to be converted into `BasePart`s/`UnionOperation`s <br/>
-and added to the root `UnionOperation` via `GeometryService:SubtractAsync()` or `BasePart:SubtractAsync()`
+3. It will contain `NegateOperation`s that have to be converted (will explain this shortly)
+into<br/> 
+`BasePart`s/`UnionOperation`s and removed from the root `UnionOperation` via
+`GeometryService:SubtractAsync()`<br/>
+or `BasePart:SubtractAsync()`<br/>
+4. It will contain `UnionOperation`s/`BasePart`s marked with the `rbxNegated` tag<br/>
+that have to be removed from the root `UnionOperation` via `GeometryService:SubtractAsync()`<br/>
+or `BasePart:SubtractAsync()`<br/>
 
+### Converting `NegateOperation`s into their subtractables
+`NegateOperation`s do not store `MeshData`/`MeshData2`, only `ChildData`/`ChildData2`,<br/>
+therefore you must parse those properties (whichever is present) to recieve the `BasePart`<br/>
+or `UnionOperation` (this specific case will require recursion) that created the `NegateOperation`<br/>
+and then subtract that from the geometry.
+
+### Reconstruction Guide (continued)
 Once you have reached the bottom of the tree, start to climb back up it using various operations.
 Most of the time, this includes a bunch of `GeometryService:UnionAsync()` or `BasePart:UnionAsync()` calls, and the occasional<br/>
 `GeometryService:SubtractAsync()` or `BasePart:SubtractAsync()` call.<br/>
