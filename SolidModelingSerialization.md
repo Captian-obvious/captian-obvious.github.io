@@ -129,7 +129,7 @@ that have to be removed from the root `UnionOperation` via `GeometryService:Subt
 or `BasePart:SubtractAsync()`<br/>
 
 ### Converting `NegateOperation`s into their subtractables
-`NegateOperation`s do not store `MeshData`/`MeshData2`, only `ChildData`/`ChildData2`,<br/>
+`NegateOperation`s do not (appear to) store `MeshData`/`MeshData2`, only `ChildData`/`ChildData2`,<br/>
 therefore you must parse those properties (whichever is present) to recieve the `BasePart`<br/>
 or `UnionOperation` (this specific case will require recursion) that created the `NegateOperation`<br/>
 and then subtract that from the geometry.
@@ -174,6 +174,12 @@ function mod:applyChildData(childData,isIntersection)
     else
         print_if_debug(res);
         local model=self.modules.modelAssembler:buildAsset({modelData=res},self.Services.ReplicatedStorage);
+        for _,inst in pairs(model:GetDescendants()) do
+            if inst:IsA("BaseScript") then
+                inst:Destroy();
+                warn("Union ChildData attempted to include a script: ", inst:GetFullName());
+            end;
+        end;
         local function reconstruct(model)
             local partToAttachTo=nil;
             local theparts=model:GetChildren();
@@ -188,8 +194,7 @@ function mod:applyChildData(childData,isIntersection)
                 print_if_debug("found");
                 table.insert(negativeParts,partToAttachTo);
                 local old=partToAttachTo;
-                partToAttachTo=Instance.new("Part");
-                partToAttachTo.Parent=model;
+                partToAttachTo=Instance.new("Part",model);
                 partToAttachTo.Size=Vector3.new(0,0,0);
                 partToAttachTo.CFrame=CFrame.new(old.CFrame.Position);
                 partToAttachTo.Anchored=old.Anchored;
@@ -212,31 +217,31 @@ function mod:applyChildData(childData,isIntersection)
             local old=partToAttachTo;
             local suc,Union=pcall(function()
                 if isIntersection then
-                    partToAttachTo=partToAttachTo:IntersectAsync(parts,options.CollisionFidelity,options.RenderFidelity);
+                    partToAttachTo=partToAttachTo:IntersectAsync(parts,Enum.CollisionFidelity.Default,Enum.RenderFidelity.Precise);
                     partToAttachTo.Parent=self.Services.ReplicatedStorage;
-                    partToAttachTo=partToAttachTo:IntersectAsync({old},options.CollisionFidelity,options.RenderFidelity); -- this is odd but fixes the problems
+                    partToAttachTo=partToAttachTo:IntersectAsync({old},Enum.CollisionFidelity.Default,Enum.RenderFidelity.Precise); -- this is odd but fixes the problems
                     partToAttachTo.Parent=self.Services.ReplicatedStorage;
                     partToAttachTo:SetAttribute("IsNegateOperation", old:GetAttribute("IsNegateOperation"));
-                    centerUnionPivot(partToAttachTo,partToAttachTo.Parent);
+                    centerUnionPivotBase(partToAttachTo,partToAttachTo.Parent);
                     old:Destroy();
                     return partToAttachTo;
                 end;
                 print_if_debug(parts);
-                if #parts>0 then
-                    partToAttachTo=partToAttachTo:UnionAsync(parts,options.CollisionFidelity,options.RenderFidelity);
+                if parts~={} then
+                    partToAttachTo=partToAttachTo:UnionAsync(parts,Enum.CollisionFidelity.Default,Enum.RenderFidelity.Precise);
                     partToAttachTo.Parent=model;
                     partToAttachTo:SetAttribute("IsNegateOperation", old:GetAttribute("IsNegateOperation"));
                     old:Destroy();
+                    old=partToAttachTo;
                 end;
-                old=partToAttachTo;
                 print_if_debug(negativeParts);
                 if #negativeParts>0 then
-                    partToAttachTo=partToAttachTo:SubtractAsync(negativeParts,options.CollisionFidelity,options.RenderFidelity);
+                    partToAttachTo=partToAttachTo:SubtractAsync(negativeParts,Enum.CollisionFidelity.Default,Enum.RenderFidelity.Precise);
                     partToAttachTo.Parent=self.Services.ReplicatedStorage;
                     partToAttachTo:SetAttribute("IsNegateOperation", old:GetAttribute("IsNegateOperation"));
                     old:Destroy();
                 end;
-                centerUnionPivot(partToAttachTo,partToAttachTo.Parent);
+                centerUnionPivotBase(partToAttachTo,partToAttachTo.Parent);
                 return partToAttachTo;
             end);
             if not suc then
@@ -244,11 +249,16 @@ function mod:applyChildData(childData,isIntersection)
                 return nil;
             end;
             for i,v in pairs(parts) do
-                v:Destroy();
+                if v~=partToAttachTo then
+                    v:Destroy();
+                end;
             end;
             for i,v in pairs(negativeParts) do
-                v:Destroy();
+                if v~=partToAttachTo then
+                    v:Destroy();
+                end;
             end;
+            partToAttachTo.Parent=self.Services.ReplicatedStorage;
             model:Destroy();
             return partToAttachTo;
         end;
