@@ -6,7 +6,7 @@ tags: [Documentation, REST API, Reference, REST API Reference, API Reference]
 authors:
     - Captian-obvious (aka Superduperdev2)
 ---
-# Prerequisits
+# Prerequisites
 
 Understanding this document requires some prior knowlegde with what a REST API is and how to<br/>
 interact with one. It also assumes a basic understanding of data types:
